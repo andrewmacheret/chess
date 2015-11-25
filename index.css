@@ -1,0 +1,325 @@
+html {
+  font-family: Helvetica, Arial, sans-serif;
+  font-color: #333;
+  text-rendering: optimizelegibility;
+}
+
+input, select, button, textarea {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  vertical-align: middle;
+}
+
+a:link {
+  text-decoration: none;
+  color: #213483;
+}
+
+a:visited {
+  text-decoration: none;
+  color: #213483;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #4763d1;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+h1 {
+  margin: 10px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+h2 {
+  margin: 10px;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.code {
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#content {
+  text-align: center;
+}
+
+.board {
+  border: solid #222 1px;
+  padding: 3px;
+  display: inline-block;
+}
+
+.squares {
+  border: solid #222 1px;
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.square {
+  position: absolute;
+}
+
+.square-white {
+  background-color: #ffcd9e;
+}
+.square-black {
+  background-color: #cf8846;
+}
+
+.piece.piece-draggable {
+  /*
+  border: 1px solid green;
+  box-sizing: border-box;
+  */
+}
+
+.square-over.square-droppable {
+  border: 1px solid blue;
+  box-sizing: border-box;
+}
+.square-over.square-droppable .piece {
+  margin: -1px;
+  /*transition-property: none;*/
+}
+.square-over.square-droppable .piece.last-move {
+  border-color: rgba(0, 0, 0, 0) !important;
+  transition-property: none !important;
+}
+
+.piece.last-move {
+  transition: left 500ms, top 500ms, border-color 0s 500ms;
+  z-index: 3;
+}
+.piece.last-move.animation-started {
+  /* left: x */
+  /* top: y */
+  border-color: rgba(0, 0, 0, 0);
+}
+.piece.last-move.animation-ended {
+  left: 0 !important;
+  top: 0 !important;
+  border-color: blue;
+}
+
+.piece.capture {
+  transition: opacity 500ms, transform 500ms;
+  z-index: 1;
+}
+.piece.capture.animation-started {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+.piece.capture.animation-ended {
+  opacity: 0;
+  transform: rotate(360deg);
+}
+
+.piece {
+  background-image: url('pieces.png');
+  background-size: 300px auto;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  z-index: 2;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+
+  /* transparent border of 1 pixel */
+  border: 1px solid rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+}
+.captured .piece {
+  cursor: default;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-size: 150px auto;
+}
+
+.piece-K {
+  background-position: -1px -1px;
+}
+.piece-Q {
+  background-position: -51px -1px;
+}
+.piece-B {
+  background-position: -101px -1px;
+}
+.piece-N {
+  background-position: -151px -1px;
+}
+.piece-R {
+  background-position: -201px -1px;
+}
+.piece-P {
+  background-position: -251px -1px;
+}
+
+.piece-k {
+  background-position: -1px -51px;
+}
+.piece-q {
+  background-position: -51px -51px;
+}
+.piece-b {
+  background-position: -101px -51px;
+}
+.piece-n {
+  background-position: -151px -51px;
+}
+.piece-r {
+  background-position: -201px -51px;
+}
+.piece-p {
+  background-position: -251px -51px;
+}
+
+
+.captured .piece-K {
+  background-position: -1px -1px;
+}
+.captured .piece-Q {
+  background-position: -26px -1px;
+}
+.captured .piece-B {
+  background-position: -51px -1px;
+}
+.captured .piece-N {
+  background-position: -76px -1px;
+}
+.captured .piece-R {
+  background-position: -101px -1px;
+}
+.captured .piece-P {
+  background-position: -126px -1px;
+}
+
+.captured .piece-k {
+  background-position: -1px -26px;
+}
+.captured .piece-q {
+  background-position: -26px -26px;
+}
+.captured .piece-b {
+  background-position: -51px -26px;
+}
+.captured .piece-n {
+  background-position: -76px -26px;
+}
+.captured .piece-r {
+  background-position: -101px -26px;
+}
+.captured .piece-p {
+  background-position: -126px -26px;
+}
+
+
+.piece-dragging {
+  display: none;
+}
+
+.captured {
+  display: inline-block;
+  width: 50px;
+  vertical-align: top;
+  border-width: 1px 0;
+  border-color: #222;
+  border-style: solid;
+}
+.captured-w, .captured-b {
+  display: block;
+  padding: 2px 0;
+  text-align: left;
+  width: 50px;
+  height: 200px;
+}
+.captured-b {
+  border-top: solid #222 1px;
+  padding-top: 1px;
+}
+.captured .piece {
+  position: relative;
+  cursor: default;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-size: 150px auto;
+  margin: -2px 0;
+}
+
+.moves {
+  display: inline-block;
+  width: 136px;
+  height: 408px;
+  vertical-align: top;
+  border: solid #222 1px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.moves-w, .moves-b {
+  display: inline-block;
+  width: 50px;
+  vertical-align: top;
+  min-height: 398px;
+  font-size: 14px;
+  text-align: left;
+  padding: 5px;
+}
+.moves-w {
+  border-width: 0 1px 0 0;
+  border-color: #222;
+  border-style: solid;
+  margin-right: -1px;
+}
+.moves-b {
+  border-width: 0 0 0 1px;
+  border-color: #222;
+  border-style: solid;
+}
+
+.player-choice {
+  display: block;
+  font-size: 30px;
+  padding: 0px;
+  margin: 5px auto;
+  border-radius: 5px;
+  background-color: #ddd;
+  width: 250px;
+}
+
+.player-choice .piece {
+  vertical-align: text-bottom;
+  display: inline-block;
+  position: relative;
+  text-align: middle;
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: 0px 0px 10px #fff;
+  color: #800;
+}
+
+.player-choice .piece.piece-ai::before {
+  content: "AI";
+  font-size: 30px;
+}
+
+.player-choice .piece.piece-human::before {
+  content: "Human";
+}
