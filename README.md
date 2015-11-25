@@ -1,3 +1,5 @@
+# chess
+
 ![Game image](game2.png?raw=true "Game image")
 
 A web-based chess program written in [React](https://facebook.github.io/react/) and [React-dnd](http://gaearon.github.io/react-dnd/) that supports any combination of player vs AI. Includes support for drag and drop for human players and animation effects for computer players.
