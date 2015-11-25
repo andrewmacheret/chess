@@ -17,6 +17,8 @@ Installation steps:
 * `./compile.sh` - this will generate the required `bundle.js` file.
 
 Test it:
-* Open `index.html` in a browser. For testing purposes, if you don't have a web server, running `python -m SimpleHTTPServer` in the project directory and navigating to [http://localhost:8000](http://localhost:8000) should do the trick.
-* You should see several buttons asking what kind of chess game to play. To troubleshoot, look for javascript errors in the browser console.
+* Open `index.html` in a browser.
+ * For testing purposes, if you don't have a web server, running `python -m SimpleHTTPServer` in the project directory and navigating to [http://localhost:8000](http://localhost:8000) should do the trick.
+* You should see several buttons asking what kind of chess game to play.
+* To troubleshoot, look for javascript errors in the browser console.
 
