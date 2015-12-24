@@ -94,6 +94,8 @@ gulp.task('copy-properties', function() {
     .pipe(gulp.dest(buildDir + '/'));
 });
 
+/* main tasks */
+
 gulp.task('clean', function() {
   return del([ buildDir + '/' ]);
 });
@@ -104,6 +106,14 @@ gulp.task('watch-dev', ['build-dev'], function() {
   gulp.watch(srcDir + '/' + imagesDir + '/*', ['copy-images']);
   gulp.watch(propertiesFile, ['copy-properties']);
   return buildScript({watch: true, compress: false});
+});
+
+gulp.task('watch', ['build-dev'], function() {
+  gulp.watch(srcDir + '/' + cssDir + '/*.css', ['copy-css-compressed']);
+  gulp.watch(srcDir + '/' + htmlDir + '/*.html', ['copy-html']);
+  gulp.watch(srcDir + '/' + imagesDir + '/*', ['copy-images']);
+  gulp.watch(propertiesFile, ['copy-properties']);
+  return buildScript({watch: true, compress: true});
 });
 
 gulp.task('build-dev', ['copy-css', 'copy-html', 'copy-images', 'copy-properties'], function() {
