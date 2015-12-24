@@ -38,6 +38,7 @@
     "babel-preset-react": "^6.3.13",
     "babelify": "^7.2.0",
     "jquery": "^2.1.4",
+    "properties-reader": "0.0.13",
     "react": "^0.14.3",
     "react-dnd": "^2.0.2",
     "react-dnd-html5-backend": "^2.0.0",

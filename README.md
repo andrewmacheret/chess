@@ -16,7 +16,7 @@ Installation steps:
 * `git clone <clone url>`
 * `cd chess/`
 * `npm install` - this will install required packages as specified in [package.json](package.json)
-* Modify `movesUrl` in [src/js/settings.js](src/js/settings.js) as needed
+* Modify `movesUrl` in [app.properties](app.properties) as needed
 * `gulp build` - this will build all required files to the `build/` directory
 
 Test it:

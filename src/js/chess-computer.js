@@ -1,7 +1,14 @@
 "use strict";
 
 var $ = require('jquery');
-var movesUrl = require('./settings.js').movesUrl;
+var reader = require('properties-reader');
+
+// TODO: this should be moved to a shared properties class
+var movesUrl;
+$.get('app.properties').done(function(responseText) {
+  var properties = reader().read(responseText);
+  movesUrl = properties.get('main.movesUrl');
+});
 
 var ChessComputer = function() {
   var $public = this;

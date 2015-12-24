@@ -20,6 +20,7 @@ var buildDir = './build';
 var mainJs = 'index.js';
 var bundleJs = 'bundle.js';
 var minExt = '.min.';
+var propertiesFile = 'app.properties';
 
 function buildScript(options) {
   var watch = options.watch;
@@ -88,6 +89,11 @@ gulp.task('copy-images', function() {
     .pipe(gulp.dest(buildDir + '/' + imagesDir));
 });
 
+gulp.task('copy-properties', function() {
+  return gulp.src(propertiesFile)
+    .pipe(gulp.dest(buildDir + '/'));
+});
+
 gulp.task('clean', function() {
   return del([ buildDir + '/' ]);
 });
@@ -96,14 +102,15 @@ gulp.task('watch-dev', ['build-dev'], function() {
   gulp.watch(srcDir + '/' + cssDir + '/*.css', ['copy-css']);
   gulp.watch(srcDir + '/' + htmlDir + '/*.html', ['copy-html']);
   gulp.watch(srcDir + '/' + imagesDir + '/*', ['copy-images']);
+  gulp.watch(propertiesFile, ['copy-properties']);
   return buildScript({watch: true, compress: false});
 });
 
-gulp.task('build-dev', ['copy-css', 'copy-html', 'copy-images'], function() {
+gulp.task('build-dev', ['copy-css', 'copy-html', 'copy-images', 'copy-properties'], function() {
   return buildScript({watch: false, compress: false});
 });
 
-gulp.task('build', ['copy-css-compressed', 'copy-html', 'copy-images'], function() {
+gulp.task('build', ['copy-css-compressed', 'copy-html', 'copy-images', 'copy-properties'], function() {
   return buildScript({watch: false, compress: true});
 });
 
