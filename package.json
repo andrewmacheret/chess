@@ -1,0 +1,42 @@
+{
+  "name": "react-chess",
+  "version": "1.0.0",
+  "description": "A web-based chess program written in React and React-dnd that supports any combination of player vs AI.",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewmacheret/chess.git"
+  },
+  "keywords": [
+    "react",
+    "chess"
+  ],
+  "author": "Andrew Macheret <andrew.macheret@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrewmacheret/chess/issues"
+  },
+  "homepage": "https://github.com/andrewmacheret/chess#readme",
+  "devDependencies": {
+    "browserify": "^12.0.1",
+    "gulp": "^3.9.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-util": "^3.0.7",
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.6.1"
+  },
+  "dependencies": {
+    "babel-preset-react": "^6.3.13",
+    "babelify": "^7.2.0",
+    "jquery": "^2.1.4",
+    "react": "^0.14.3",
+    "react-dnd": "^2.0.2",
+    "react-dnd-html5-backend": "^2.0.0",
+    "react-dnd-touch-backend": "^0.2.4",
+    "react-dom": "^0.14.3"
+  }
+}
