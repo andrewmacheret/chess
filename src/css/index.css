@@ -132,7 +132,7 @@ h2 {
 }
 
 .piece {
-  background-image: url('pieces.png');
+  background-image: url('../images/pieces.png');
   background-size: 300px auto;
   background-repeat: no-repeat;
   cursor: pointer;
