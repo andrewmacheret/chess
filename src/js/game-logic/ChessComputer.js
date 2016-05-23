@@ -1,5 +1,3 @@
-"use strict";
-
 var $ = require('jquery');
 var reader = require('properties-reader');
 
@@ -34,7 +32,7 @@ var ChessComputer = function() {
           callback(sourceSquare, targetSquare, promotion);
         }
       }.bind(this)).fail(function(err) {
-        console && console.error(err);
+        //console && console.error(err);
         if (confirm('Unexpected error: ' + err + ' - retry?')) {
           // retry the function
           this.requestMove.apply(this, arguments);
@@ -42,12 +40,13 @@ var ChessComputer = function() {
       }.bind(this));
     },
 
-    choosePromotion: function(sourceSquare, targetSquare, choices, callback) {
+    choosePromotion: function(/*sourceSquare, targetSquare, choices, callback*/) {
       // this shouldn't happen - throw an error
       throw 'Unexpected promotion choice.';
     }
 
-  }.init();
+  };
+  $private.init();
 }
 
 module.exports = ChessComputer;

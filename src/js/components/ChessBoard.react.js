@@ -1,7 +1,5 @@
-"use strict";
-
 var React = require('react');
-var ReactDOM = require('react-dom');
+//var ReactDOM = require('react-dom');
 
 var isTouchDevice = 'ontouchstart' in document.documentElement;
 var HTML5Backend = require('react-dnd-html5-backend');
@@ -9,12 +7,12 @@ var TouchBackend = require('react-dnd-touch-backend');
 var DragBackend = isTouchDevice ? TouchBackend : HTML5Backend;
 var DragDropContext = require('react-dnd').DragDropContext;
 
-var ChessSquare = require('./chess-square.js');
-var ChessPiece = require('./chess-piece.js');
+var ChessSquare = require('./ChessSquare.react');
+var ChessPiece = require('./ChessPiece.react');
 
-var ChessRules = require('./chess-rules.js');
-var ChessState = require('./chess-state.js');
-var ChessMove = require('./chess-move.js');
+var ChessRules = require('../game-logic/ChessRules.js');
+var ChessState = require('../game-logic/ChessState.js');
+//var ChessMove = require('../game-logic/ChessMove.js');
 
 var ChessBoard = React.createClass({
   propTypes: {

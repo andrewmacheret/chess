@@ -4,11 +4,12 @@ var notify = require('gulp-notify');
 var uglify = require('gulp-uglify');
 var streamify = require('gulp-streamify');
 var rename = require('gulp-rename');
-var minifyCss = require('gulp-minify-css');
+var minifyCss = require('gulp-cssnano');
+var eslint = require('gulp-eslint');
 
 var source = require('vinyl-source-stream');
 var browserify = require('browserify');
-var reactify = require('reactify');
+var babelify = require('babelify');
 var watchify = require('watchify');
 
 var del = require('del'); // rm -rf
@@ -20,10 +21,10 @@ var PATHS = {
   jsDir: 'js',
   cssDir: 'css',
   imagesDir: 'images',
-  mainJs: 'index.js',
+  mainJs: 'index.react.js',
   bundleJs: 'bundle.js',
   minExt: '.min.',
-  propertiesFile: 'app.properties'
+  propertiesFile: 'app.json'
 };
 
 // Task to build javascript files
@@ -39,12 +40,12 @@ function buildJs(options) {
   props.entries = [PATHS.srcDir + '/' + PATHS.jsDir + '/' + PATHS.mainJs];
   props.debug = true;
   
-  // Build browserify with reactify, optionally with watchify
+  // Build browserify with babelify, optionally with watchify
   var bundler = browserify(props);
   if (watch) {
     bundler = watchify(bundler);
   }
-  bundler.transform(reactify);
+  bundler.transform(babelify, {presets: ['es2015', 'react']});
   
   // Build the rebundle function using the bundler we just created
   function rebundle() {
@@ -64,7 +65,9 @@ function buildJs(options) {
     
     // If compress is enabled, also build a minified bundle file
     if (compress) {
-      b = b.pipe(streamify(uglify()))
+      b = b.pipe(streamify(uglify().on('error', function(err) {
+          throw err;
+        })))
         .pipe(rename({extname: PATHS.minExt + 'js'}))
         .pipe(gulp.dest(PATHS.buildDir + '/' + PATHS.jsDir));
     }
@@ -112,6 +115,19 @@ gulp.task('copy-properties', function() {
     .pipe(gulp.dest(PATHS.buildDir + '/'));
 });
 
+gulp.task('lint', function () {
+  return gulp.src(['src/**/*.js', '*.js'])
+    // eslint() attaches the lint output to the "eslint" property
+    // of the file object so it can be used by other modules.
+    .pipe(eslint())
+    // eslint.format() outputs the lint results to the console.
+    // Alternatively use eslint.formatEach() (see Docs).
+    .pipe(eslint.format())
+    // To have the process exit with an error code (1) on
+    // lint error, return the stream and pipe to failAfterError last.
+    .pipe(eslint.failAfterError());
+}.bind(this));
+
 /* main tasks */
 
 gulp.task('clean', function() {
@@ -134,11 +150,11 @@ gulp.task('watch', ['build-dev'], function() {
   return buildJs({watch: true, compress: true});
 });
 
-gulp.task('build-dev', ['copy-css', 'copy-html', 'copy-images', 'copy-properties'], function() {
+gulp.task('build-dev', ['lint', 'copy-css', 'copy-html', 'copy-images', 'copy-properties'], function() {
   return buildJs({watch: false, compress: false});
 });
 
-gulp.task('build', ['copy-css-compressed', 'copy-html', 'copy-images', 'copy-properties'], function() {
+gulp.task('build', ['lint', 'copy-css-compressed', 'copy-html', 'copy-images', 'copy-properties'], function() {
   return buildJs({watch: false, compress: true});
 });
 

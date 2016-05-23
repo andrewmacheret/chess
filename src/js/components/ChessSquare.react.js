@@ -1,7 +1,5 @@
-"use strict";
-
 var React = require('react');
-var ReactDOM = require('react-dom');
+//var ReactDOM = require('react-dom');
 
 var DropTarget = require('react-dnd').DropTarget;
 
@@ -54,13 +52,13 @@ var ChessSquare = React.createClass({
 });
 
 var dragTargetSpec = {
-  drop: function (props, monitor, component) {
+  drop: function (props, monitor/*, component*/) {
     // we need to set a timeout to finish dragging
     window.setTimeout(function() {
       props.move(monitor.getItem().originSquare, props.name);
     }, 1);
   },
-  canDrop: function (props, monitor, component) {
+  canDrop: function (props, monitor/*, component*/) {
     return props.canMove(monitor.getItem().originSquare, props.name);
   }
   // hover

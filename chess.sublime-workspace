@@ -1,0 +1,1391 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Handle",
+				"HandlerFunc"
+			],
+			[
+				"annot",
+				"annotationDescriptions"
+			],
+			[
+				"toObjec",
+				"toObjectId"
+			],
+			[
+				"Annot",
+				"AnnotationStore"
+			],
+			[
+				"shw",
+				"showResults"
+			],
+			[
+				"disp",
+				"dispatcherIndex"
+			],
+			[
+				"action",
+				"actionType"
+			],
+			[
+				"document",
+				"documentsForToken"
+			],
+			[
+				"_document",
+				"_documentsByTitle"
+			],
+			[
+				"newDocument",
+				"newDocumentTitle"
+			],
+			[
+				"annotat",
+				"annotation"
+			],
+			[
+				"desc",
+				"description"
+			],
+			[
+				"create",
+				"createAnnotationFromSelection"
+			],
+			[
+				"ann",
+				"annotations"
+			],
+			[
+				"anno",
+				"annotation"
+			],
+			[
+				"_",
+				"_annotations"
+			],
+			[
+				"newA",
+				"newAnnotationDescription"
+			],
+			[
+				"annotatio",
+				"annotationId"
+			],
+			[
+				"_documents",
+				"_documentsByUrl"
+			],
+			[
+				"emit",
+				"emitChange"
+			],
+			[
+				"propri",
+				"properties"
+			],
+			[
+				"getQuad",
+				"getQuadIntersectionPart"
+			],
+			[
+				"normal",
+				"normal"
+			],
+			[
+				"determin",
+				"determinant"
+			],
+			[
+				"intensi",
+				"intensity"
+			],
+			[
+				"e",
+				"extname"
+			],
+			[
+				"on",
+				"onError"
+			],
+			[
+				"color",
+				"colorIntensitiy"
+			],
+			[
+				"colorIn",
+				"colorIntensitiy"
+			],
+			[
+				"0xff",
+				"0xff000000"
+			],
+			[
+				"refle",
+				"reflection"
+			],
+			[
+				"refel",
+				"reflectionDirection"
+			],
+			[
+				"newRa",
+				"newRayDirection"
+			],
+			[
+				"close",
+				"closestObject"
+			],
+			[
+				"ray",
+				"rayStart"
+			],
+			[
+				"newR",
+				"newRayDirection"
+			],
+			[
+				"newRay",
+				"newRayDirection"
+			],
+			[
+				"obje",
+				"objectType"
+			],
+			[
+				"ob",
+				"objectType"
+			],
+			[
+				"cha",
+				"characterTranslator"
+			],
+			[
+				"toBrai",
+				"toBrailleWord"
+			],
+			[
+				"numbe",
+				"numberFollows"
+			],
+			[
+				"lastPlayer",
+				"lastPlayerName"
+			],
+			[
+				"curre",
+				"currentPlayer"
+			],
+			[
+				"getL",
+				"getLastMove"
+			],
+			[
+				"last",
+				"lastPlayer"
+			],
+			[
+				"touc",
+				"TouchBackend"
+			],
+			[
+				"player",
+				"playerCaptures"
+			],
+			[
+				"VAL",
+				"VALID_PLAYERS"
+			],
+			[
+				"border",
+				"border-box"
+			],
+			[
+				"targ",
+				"target"
+			],
+			[
+				"va",
+				"VALID_PLAYERS"
+			],
+			[
+				"VALID_P",
+				"VALID_PLAYERS"
+			],
+			[
+				"captu",
+				"capture"
+			],
+			[
+				"resetM",
+				"resetMoves"
+			],
+			[
+				"inc",
+				"incrementMoveNumber"
+			],
+			[
+				"rese",
+				"resetHalfMoves"
+			],
+			[
+				"reset",
+				"resetCaptures"
+			],
+			[
+				"final",
+				"finalizeMoves"
+			],
+			[
+				"allow",
+				"allowKingInCheck"
+			],
+			[
+				"colu",
+				"columnNumber"
+			],
+			[
+				"access",
+				"accessorName"
+			],
+			[
+				"Chess",
+				"chessState"
+			],
+			[
+				"field",
+				"fieldNames"
+			],
+			[
+				"fied",
+				"fieldNames"
+			],
+			[
+				"fromFen",
+				"fromFenCastles"
+			],
+			[
+				"ha",
+				"halfMoves"
+			],
+			[
+				"enPas",
+				"enPassant"
+			],
+			[
+				"baord",
+				"boardState"
+			],
+			[
+				"getLega",
+				"getLegalMoves"
+			],
+			[
+				"legalM",
+				"legalMoves"
+			],
+			[
+				"legal",
+				"legalMoves"
+			],
+			[
+				"lea",
+				"legalMoves"
+			],
+			[
+				"sour",
+				"sourceSquare"
+			],
+			[
+				"getLe",
+				"getLegalMoves"
+			],
+			[
+				"source",
+				"source"
+			],
+			[
+				"board",
+				"boardState"
+			],
+			[
+				"boar",
+				"boardState"
+			],
+			[
+				"side",
+				"sideDirection"
+			],
+			[
+				"enP",
+				"enPassant"
+			],
+			[
+				"lega",
+				"legalMoves"
+			],
+			[
+				"to",
+				"toLowerCase"
+			],
+			[
+				"rwo",
+				"rowNumber"
+			],
+			[
+				"dire",
+				"directions"
+			],
+			[
+				"target",
+				"targetPiece"
+			],
+			[
+				"prom",
+				"promotionChoices"
+			],
+			[
+				"promo",
+				"promotionPiece"
+			],
+			[
+				"en",
+				"enPassant"
+			],
+			[
+				"row",
+				"rowNumber"
+			],
+			[
+				"column",
+				"columnNumber"
+			],
+			[
+				"peice",
+				"pieceLetter"
+			],
+			[
+				"Column",
+				"columnNumber"
+			],
+			[
+				"height",
+				"heightPercent"
+			],
+			[
+				"inti",
+				"getInitialState"
+			],
+			[
+				"handle",
+				"handleChange"
+			],
+			[
+				"default",
+				"defaultChecked"
+			],
+			[
+				"format",
+				"formatFunction"
+			],
+			[
+				"radio",
+				"radioId"
+			],
+			[
+				"list-",
+				"list-style-type"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"coordi",
+				"coordinates"
+			],
+			[
+				"coords",
+				"coordinates"
+			],
+			[
+				"init",
+				"init"
+			],
+			[
+				"loca",
+				"locationOptions"
+			],
+			[
+				"center",
+				"centerCircle"
+			],
+			[
+				"centerMa",
+				"centerMarkerOptions"
+			],
+			[
+				"centerM",
+				"centerMarkerOptions"
+			],
+			[
+				"load",
+				"loadJSONs"
+			],
+			[
+				"positio",
+				"positionOptions"
+			],
+			[
+				"setP",
+				"setPositionCallback"
+			],
+			[
+				"get",
+				"getJSON"
+			],
+			[
+				"text",
+				"textIndent"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"list-st",
+				"list-style-type"
+			],
+			[
+				"top",
+				"topColor"
+			],
+			[
+				"left",
+				"leftColor"
+			],
+			[
+				"back",
+				"backColor"
+			],
+			[
+				"orient",
+				"orientations"
+			],
+			[
+				"right",
+				"rightColor"
+			],
+			[
+				"qeue",
+				"queuePart3"
+			],
+			[
+				"botom",
+				"bottomColor"
+			],
+			[
+				"goal",
+				"goalColor2"
+			],
+			[
+				"ter",
+				"tertiary"
+			],
+			[
+				"secon",
+				"secondaryFace"
+			],
+			[
+				"topLe",
+				"topLeft1"
+			],
+			[
+				"other",
+				"otherAxisIndex"
+			],
+			[
+				"edge",
+				"edges"
+			],
+			[
+				"tempC",
+				"tempColors"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/js/dispatcher/AppDispatcher.js",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/actions/GameActions.js",
+			"settings":
+			{
+				"buffer_size": 596,
+				"line_ending": "Unix",
+				"name": "GameActions.js"
+			}
+		},
+		{
+			"file": "src/js/actions/UserActions.js",
+			"settings":
+			{
+				"buffer_size": 588,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/stores/UserStore.js",
+			"settings":
+			{
+				"buffer_size": 3093,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "\n\n\n\n\nWELCOME\nChess!\n[play button]\n\nLOGIN\n[ Login with Facebook ]\n[ Login with Google+ ]\n\nAFTER LOGGING IN\nYou are logged in as Andrew [ Edit ] [ Logout ]\n  -> Logout logs out\n\nGAME CHOICE\nGame list\n- You vs someone [Continue game]\n- You vs someone [Continue game]\n- You vs someone [Continue game]\n[ Watch and AI vs AI game ] -> instant game\n[ Hotseat ] -> instant game \n[ Single player vs AI ]\n    -> SINGLE PLAYER VS AI OPTIONS\n[ Find an opponent to play against ]\n    -> PLAYER VS PLAYER WAITING SCREEN\n\nSINGLE PLAYER VS AI OPTIONS\n[ Play as White ]\n[ Play as Black ]\n  -> NEW GAME\n\nPLAYER VS PLAYER WAITING SCREEN\nWaiting for opponent...\n[ Cancel ]\n\nGAME\n[ ... game board ... ]\nYour move\n[ Offer draw ]\n  -> Confirm -> (offer draw to opponent)\nYour opponent has offered a draw [ Accept ] [ Reject ]\n  -> Confirm -> (end game)\n[ Forfeit ]\n  -> Confirm -> (end game)\n\nGAME OVER\n[ Play again ] (Your opponent wishes to play again)\n  -> Waiting for opponent to accept...\n  -> NEW GAME\n\n\n\nUser\n - id\n - auth types (\"facebook\" -> {})\n   - authid (string)\n   - authdata (mixed)\n - name\n - email\n - game types (\"chess\" -> {})\n   - rating (int)\n   - game_ids (ordered array)\n - createdAt\n - updatedAt\n - lastLoginAt\n\nGame\n - id\n - user_ids (ordered array, AI is a valid user?)\n - active (boolean)\n - game type (\"chess\")\n - game state (mixed)\n\n\n\n\n\n\n\n\n\n\n\n",
+			"settings":
+			{
+				"buffer_size": 1347,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/stores/GameStore.js",
+			"settings":
+			{
+				"buffer_size": 3048,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/constants/UserConstants.js",
+			"settings":
+			{
+				"buffer_size": 119,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/constants/GameConstants.js",
+			"settings":
+			{
+				"buffer_size": 92,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 147.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control:  is",
+				"Package Control: Install Package"
+			],
+			[
+				"package controll ",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"remove ",
+				"Package Control: Remove Package"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 304.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/andy1/Documents/workspace/chess",
+		"/Users/andy1/Documents/workspace/chess/src",
+		"/Users/andy1/Documents/workspace/chess/src/css",
+		"/Users/andy1/Documents/workspace/chess/src/images",
+		"/Users/andy1/Documents/workspace/chess/src/js",
+		"/Users/andy1/Documents/workspace/chess/src/js/actions",
+		"/Users/andy1/Documents/workspace/chess/src/js/components",
+		"/Users/andy1/Documents/workspace/chess/src/js/constants",
+		"/Users/andy1/Documents/workspace/chess/src/js/dispatcher",
+		"/Users/andy1/Documents/workspace/chess/src/js/game-logic",
+		"/Users/andy1/Documents/workspace/chess/src/js/stores"
+	],
+	"file_history":
+	[
+		"/Users/andy1/Downloads/client_secret_107677320351657228603.json",
+		"/Users/andy1/Downloads/Chase-7b0d719cbbad.json",
+		"/Users/andy1/Downloads/client_secret_107677320351657228603 (1).json",
+		"/Users/andy1/Documents/workspace/annotator/src/js/stores/UserStore.js",
+		"/Users/andy1/Documents/workspace/chess/src/js/actions/UserActions.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/actions/UserActions.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/constants/UserConstants.js",
+		"/Users/andy1/Documents/workspace/chess/src/js/stores/GameStore.js",
+		"/Users/andy1/Documents/workspace/chess/src/js/stores/UserStore.js",
+		"/Users/andy1/Documents/workspace/chess/src/js/index.react.js",
+		"/Users/andy1/Documents/workspace/chess/.eslintrc",
+		"/Users/andy1/Documents/workspace/chess/src/js/.eslintrc",
+		"/Users/andy1/Documents/workspace/chess/src/js/game-logic/ChessComputer.js",
+		"/Users/andy1/Documents/workspace/chess/src/js/game-logic/ChessMove.js",
+		"/Users/andy1/Documents/workspace/chess/src/js/game-logic/ChessPlayer.js",
+		"/Users/andy1/Documents/workspace/chess/src/js/game-logic/ChessRules.js",
+		"/Users/andy1/Documents/workspace/chess/src/js/game-logic/ChessState.js",
+		"/Users/andy1/Documents/workspace/chess/src/js/components/ChessBoard.react.js",
+		"/Users/andy1/Documents/workspace/chess/src/js/components/ChessGame.react.js",
+		"/Users/andy1/Documents/workspace/chess/src/js/components/ChessPiece.react.js",
+		"/Users/andy1/Documents/workspace/chess/src/js/components/ChessSquare.react.js",
+		"/Users/andy1/Documents/workspace/chess/gulpfile.js",
+		"/Users/andy1/Documents/workspace/annotator/gulpfile.js",
+		"/Users/andy1/Documents/workspace/chess/src/js/components/chess-board.js",
+		"/Users/andy1/go/src/github.com/andrewmacheret/rest/rest.go",
+		"/Users/andy1/go/src/github.com/andrewmacheret/rest/router.go",
+		"/Users/andy1/go/src/github.com/andrewmacheret/rest/routes.go",
+		"/Users/andy1/go/src/github.com/andrewmacheret/rest/logger.go",
+		"/Users/andy1/go/src/github.com/andrewmacheret/rest/handlers.go",
+		"/Users/andy1/go/src/github.com/andrewmacheret/rest/todo.go",
+		"/Users/andy1/go/src/github.com/andrewmacheret/rest/todo_store.go",
+		"/Users/andy1/go/src/github.com/andrewmacheret/hello/hello.go",
+		"/Users/andy1/go/src/github.com/andrewmacheret/stringutil/reverse_test.go",
+		"/Users/andy1/go/src/github.com/andrewmacheret/stringutil/reverse.go",
+		"/Users/andy1/Library/Application Support/Sublime Text 3/Packages/User/Go.sublime-build",
+		"/Users/andy1/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/andy1/go/src/github.com/andrewmacheret/andrewmacheret.sublime-project",
+		"/Users/andy1/Documents/workspace/annotator/src/js/components/SearchDocuments.react.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/components/LoggedIn.react.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/components/Document.react.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/components/Menu.react.js",
+		"/Users/andy1/Documents/workspace/annotator/src/css/index.css",
+		"/Users/andy1/Documents/workspace/annotator/src/js/components/NewDocument.react.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/components/App.react.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/components/MyDocuments.react.js",
+		"/Users/andy1/Documents/workspace/annotator/app.json",
+		"/Users/andy1/Documents/workspace/annotator/src/js/components/Login.react.js",
+		"/private/var/folders/31/jc7xkljs4tqb6x8_80vf5tb40000gn/T/1cd7e553-bc57-4fb8-82e7-085da6941dd2/home/ubuntu/servers/annotator/annotator-server.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/stores/DocumentStore.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/stores/PropertiesStore.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/stores/RestEndpoint.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/stores/AnnotationStore.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/actions/AnnotationActions.js",
+		"/private/var/folders/31/jc7xkljs4tqb6x8_80vf5tb40000gn/T/1cd7e553-bc57-4fb8-82e7-085da6941dd2/home/ubuntu/servers/annotator/deviewer-server.js",
+		"/private/var/folders/31/jc7xkljs4tqb6x8_80vf5tb40000gn/T/1cd7e553-bc57-4fb8-82e7-085da6941dd2/home/ubuntu/servers/annotator/annotator notes.txt",
+		"/Users/andy1/dan carlin notes.txt",
+		"/Users/andy1/states i haven't been to yet.txt",
+		"/Users/andy1/Documents/workspace/annotator/src/js/components/ProgressBar.react.js",
+		"/Users/andy1/Box Sync/andym/bio.txt",
+		"/Users/andy1/Documents/workspace/annotator/src/js/index.react.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/actions/DocumentActions.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/dispatcher/AppDispatcher.js",
+		"/Users/andy1/Documents/workspace/annotator/annotator.sublime-project",
+		"/Users/andy1/Documents/workspace/annotator/annotator.sublime-workspace",
+		"/Users/andy1/Documents/workspace/annotator/src/js/components/SearchDocuments.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/components/logged-in.react.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/components/login.react.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/components/menu.react.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/components/app.react.js",
+		"/Users/andy1/Documents/workspace/annotator/src/index.html",
+		"/Users/andy1/Documents/workspace/annotator/src/index-debug.html",
+		"/Users/andy1/Documents/workspace/annotator/src/js/constants/DocumentConstants.js",
+		"/Users/andy1/Documents/workspace/annotator/src/js/constants/AnnotationConstants.js",
+		"/Users/andy1/Documents/workspace/puzzle/app.json",
+		"/Users/andy1/Documents/workspace/puzzle/src/js/game-loader.js",
+		"/Users/andy1/Documents/workspace/puzzle/src/js/level.js",
+		"/Users/andy1/Documents/workspace/puzzle/src/js/game-buttons.js",
+		"/Users/andy1/Box Sync/andym/laser maze",
+		"/Users/andy1/Documents/workspace/puzzle/src/js/game.js",
+		"/Users/andy1/Documents/workspace/puzzle/src/css/index.css",
+		"/Users/andy1/Documents/workspace/puzzle/src/index-debug.html",
+		"/Users/andy1/Documents/workspace/puzzle/src/index.html",
+		"/Users/andy1/Documents/workspace/puzzle/src/js/level-canvas.js",
+		"/Users/andy1/Documents/workspace/puzzle/src/js/level-name.js",
+		"/Users/andy1/Documents/workspace/puzzle/src/js/game-data.js",
+		"/Users/andy1/Documents/workspace/puzzle/index.html",
+		"/Users/andy1/Documents/workspace/puzzle/index-debug.html",
+		"/Users/andy1/Documents/workspace/puzzle/css/index.css",
+		"/Users/andy1/Documents/workspace/puzzle/js/progress-bar.js",
+		"/Users/andy1/Documents/workspace/puzzle/js/level.js",
+		"/Users/andy1/Documents/workspace/puzzle/js/game-data.js",
+		"/Users/andy1/Documents/workspace/puzzle/js/game.js",
+		"/Users/andy1/Documents/workspace/puzzle/js/index.js",
+		"/Users/andy1/Documents/workspace/puzzle/js/game-buttons.js",
+		"/Users/andy1/Documents/workspace/puzzle/js/canvas.js",
+		"/Users/andy1/Documents/workspace/puzzle/js/levels.js",
+		"/Users/andy1/Documents/workspace/puzzle/js/level-name.js",
+		"/Users/andy1/Documents/workspace/raytracer/app.properties",
+		"/Users/andy1/Documents/workspace/raytracer/src/index-debug.html",
+		"/Users/andy1/Documents/workspace/raytracer/src/index.html",
+		"/Users/andy1/Documents/workspace/raytracer/gulpfile.js",
+		"/Users/andy1/Documents/workspace/raytracer/src/js/vector.js",
+		"/Users/andy1/Documents/workspace/raytracer/src/js/color.js",
+		"/Users/andy1/Documents/workspace/raytracer/src/css/index.css",
+		"/Users/andy1/Documents/workspace/raytracer/src/js/index.js",
+		"/Users/andy1/Documents/workspace/raytracer/src/js/progress-bar.js",
+		"/Users/andy1/Documents/workspace/raytracer/src/js/scene.js",
+		"/Users/andy1/Box Sync/andym/you are a sorceror",
+		"/Users/andy1/Documents/workspace/raytracer/src/js/.eslintrc",
+		"/Users/andy1/Documents/workspace/raytracer/.eslintrc",
+		"/Users/andy1/Documents/workspace/raytracer/build/js/bundle.js",
+		"/Users/andy1/Documents/workspace/chess/src/js/chess-computer.js",
+		"/Users/andy1/Documents/workspace/raytracer/src/js/canvas.js",
+		"/Users/andy1/Documents/workspace/raytracer/src/js/ray-tracer.js",
+		"/Users/andy1/Box Sync/andym/familyplan",
+		"/Users/andy1/Box Sync/andym/crowdsurf.txt",
+		"/Users/andy1/Library/Application Support/factorio/mods/Landfill_2.1.7/control.lua",
+		"/Users/andy1/Library/Application Support/factorio/mods/Landfill_2.1.7/data.lua",
+		"/Users/andy1/Documents/workspace/braille/manifest.json",
+		"/Users/andy1/Documents/workspace/braille/content.js",
+		"/Users/andy1/Documents/workspace/braille/background.js",
+		"/Users/andy1/Downloads/clickerHeroSave.txt",
+		"/Users/andy1/Box Sync/andym/super gross movies of 2015!",
+		"/Users/andy1/Downloads/sub.class1.server.ca.pem",
+		"/Users/andy1/Downloads/ca.pem",
+		"/Users/andy1/Documents/workspace/crowdsurf/settings.json",
+		"/Users/andy1/Documents/workspace/crowdsurf/crowdsurf-server.js",
+		"/private/var/folders/31/jc7xkljs4tqb6x8_80vf5tb40000gn/T/da7efd9a-ee68-49c5-8c19-3e73db859491/home/ubuntu/servers/crowdsurf/crowdsurf-server.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"PRIVATE",
+			"\"}}",
+			"active",
+			"User",
+			"USER",
+			"User",
+			"USER",
+			"User",
+			"ChessMove",
+			"\"",
+			"daughter",
+			"nill",
+			"json_size_limit",
+			"int",
+			"todo",
+			"Index",
+			"Name",
+			"html",
+			" < ",
+			"-",
+			"+",
+			" ...........................",
+			".................................................................",
+			"................................................................",
+			"...............................................................",
+			"..............................................................",
+			".............................................................",
+			"............................................................",
+			"...........................................................",
+			"..........................................................",
+			".........................................................",
+			"........................................................",
+			".......................................................",
+			"......................................................",
+			".....................................................",
+			"....................................................",
+			"...................................................",
+			"..................................................",
+			".................................................",
+			"str",
+			"status",
+			"htt",
+			"start",
+			"documents",
+			"question",
+			"Question",
+			"question",
+			"Question",
+			"question",
+			"questionJson",
+			"Schema.Types.",
+			"Mixed",
+			"Number",
+			"int",
+			"created_at",
+			"updated_at",
+			"deviewer",
+			"HttpEndpoint",
+			"this",
+			"Properties",
+			"properties",
+			"Properties",
+			"RestEndpoint",
+			"this.state.user",
+			"createAnnotationFromSelection",
+			" = ",
+			"AnnotationActions",
+			"= ",
+			"AnnotationActions",
+			"AnnotationStore",
+			"AnnotationActions",
+			"getTokens",
+			"getToken",
+			"components",
+			"trimmed",
+			"url",
+			"DocumentActions",
+			"MyDocuments",
+			"createAnnotationFromSelection",
+			"renderDocument",
+			"getUniqueClassName",
+			"fail",
+			"Menu",
+			"Game",
+			"srcDir",
+			"update",
+			", ",
+			"DocumentConstants",
+			"DocumentStore",
+			"annotationDescription",
+			"creation",
+			"id",
+			"start",
+			"_documents",
+			"Document",
+			"user",
+			"UserConstants",
+			"user",
+			"UserStore",
+			"user",
+			"authData",
+			"_users",
+			"User",
+			"existingUser",
+			"TODO",
+			"Document",
+			"DOCUMENT",
+			"Document",
+			"DOCUMENT",
+			"Document",
+			"game",
+			"Annotator",
+			"Puzzle",
+			"puzzle",
+			"Annotator",
+			"a",
+			"A",
+			"Annotator",
+			"Puzzle",
+			"puzzle",
+			"doc",
+			"annotationClassName",
+			"annotationClassNameIndex",
+			"annotationClassNamePrefix",
+			"annotationClass",
+			"annotationClassNamePrefix",
+			"rootNode",
+			"annotationClassNamePrefix"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"this",
+			"World",
+			"\"country\"",
+			"\"city\"",
+			"\"name\"",
+			"'",
+			"Game.log"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/js/dispatcher/AppDispatcher.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/js/actions/GameActions.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 596,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								497,
+								497
+							]
+						],
+						"settings":
+						{
+							"auto_name": "GameActions.js",
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/js/actions/UserActions.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 588,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								588
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/js/stores/UserStore.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3093,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1552,
+								1552
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 354.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1347,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1336,
+								1210
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 236.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/js/stores/GameStore.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3048,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1890,
+								1890
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 857.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/js/constants/UserConstants.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 119,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								102,
+								102
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/js/constants/GameConstants.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 92,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								68,
+								68
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 176.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "chess.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"css/index.css"
+			],
+			[
+				"progre",
+				"js/components/ProgressBar.react.js"
+			],
+			[
+				"login",
+				"js/components/Login.react.js"
+			],
+			[
+				"doc",
+				"js/components/Document.react.js"
+			],
+			[
+				"annotator-",
+				"/private/var/folders/31/jc7xkljs4tqb6x8_80vf5tb40000gn/T/1cd7e553-bc57-4fb8-82e7-085da6941dd2/home/ubuntu/servers/annotator/annotator-server.js"
+			],
+			[
+				"app",
+				"~/Documents/workspace/annotator/app.json"
+			],
+			[
+				"reste",
+				"js/stores/RestEndpoint.js"
+			],
+			[
+				"logged",
+				"js/components/LoggedIn.react.js"
+			],
+			[
+				"docu",
+				"js/components/Document.react.js"
+			],
+			[
+				"annot",
+				"js/stores/AnnotationStore.js"
+			],
+			[
+				"docume",
+				"js/components/Document.react.js"
+			],
+			[
+				"documentstor",
+				"js/stores/DocumentStore.js"
+			],
+			[
+				"m",
+				"js/components/MyDocuments.react.js"
+			],
+			[
+				"myd",
+				"js/components/MyDocuments.react.js"
+			],
+			[
+				"docm",
+				"js/components/Document.react.js"
+			],
+			[
+				"anno",
+				"js/stores/AnnotationStore.js"
+			],
+			[
+				"docum",
+				"js/components/Document.react.js"
+			],
+			[
+				"new",
+				"js/components/NewDocument.react.js"
+			],
+			[
+				"documentstore",
+				"js/stores/DocumentStore.js"
+			],
+			[
+				"se",
+				"js/components/SearchDocuments.react.js"
+			],
+			[
+				"my",
+				"js/components/MyDocuments.react.js"
+			],
+			[
+				"searc",
+				"js/components/SearchDocuments.react.js"
+			],
+			[
+				"inde",
+				"css/index.css"
+			],
+			[
+				"menu",
+				"js/components/Menu.react.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 259.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

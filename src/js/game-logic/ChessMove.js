@@ -1,5 +1,3 @@
-"use strict";
-
 var ChessMove = function($options) {
   var $public = this;
   var $private = {
@@ -54,16 +52,17 @@ var ChessMove = function($options) {
       // source
       // (algabraic notation is really annoying)
       var piece = this.fields.piece.toUpperCase();
+      var column;
       if (piece == 'P') {
         // NEVER specify letter
         // NEVER specify a row
         // SOMETIMES specify column, but only if changing columns
         if (this.fields.source.columnNumber != this.fields.target.columnNumber) {
-          var column = this.getColumn(this.fields.source.columnNumber);
+          column = this.getColumn(this.fields.source.columnNumber);
           move += column;
         }
       } else {
-        var column = this.getColumn(this.fields.source.columnNumber);
+        column = this.getColumn(this.fields.source.columnNumber);
         var row = this.getRow(this.fields.source.rowNumber);
         if (this.fields.rowUnique && this.fields.columnUnique) {
           // this is a unique piece... no need for source
@@ -117,7 +116,8 @@ var ChessMove = function($options) {
       return String.fromCharCode('a'.charCodeAt(0) + columnNumber);
     }
 
-  }.init();
+  };
+  $private.init();
 };
 
 module.exports = ChessMove;

@@ -1,7 +1,5 @@
-"use strict";
-
 var React = require('react');
-var ReactDOM = require('react-dom');
+//var ReactDOM = require('react-dom');
 
 var DragSource = require('react-dnd').DragSource;
 
@@ -87,13 +85,13 @@ var ChessPiece = React.createClass({
 });
 
 var dragSourceSpec = {
-  beginDrag: function (props, monitor, component) {
+  beginDrag: function (props/*, monitor, component*/) {
     return {
       originSquare: props.originSquare,
       pieceLetter: props.pieceLetter
     };
   },
-  canDrag: function (props, monitor, component) {
+  canDrag: function (props/*, monitor, component*/) {
     return props.canMove ? props.canMove(props.originSquare) : false;
   }
   // endDrag, isDragging

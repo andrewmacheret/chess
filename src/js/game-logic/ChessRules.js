@@ -1,7 +1,5 @@
-"use strict";
-
-var ChessState = require('./chess-state.js');
-var ChessMove = require('./chess-move.js');
+var ChessState = require('./ChessState.js');
+var ChessMove = require('./ChessMove.js');
 
 var ChessRules = function() {
   var $public = this;
@@ -38,6 +36,9 @@ var ChessRules = function() {
             continue;
           }
 
+          var oneSpace;
+          var directions;
+
           // find out which moves are legal based on the piece type
           var pieceType = piece.toLowerCase();
           if (pieceType == 'p') {
@@ -53,19 +54,19 @@ var ChessRules = function() {
           } else if (pieceType == 'r') {
 
             // rooks can move infinitely horizontally and vertically
-            var directions = [
+            directions = [
               {x:  1, y:  0},
               {x:  0, y:  1},
               {x: -1, y:  0},
               {x:  0, y: -1}
             ];
-            var oneSpace = false;
+            oneSpace = false;
             legalMoves = legalMoves.concat(this.getLegalMovesGeneric(chessState, source, directions, oneSpace));
 
           } else if (pieceType == 'n') {
 
             // knights move in an L shape
-            var directions = [
+            directions = [
               {x:  2, y:  1},
               {x:  1, y:  2},
               {x: -1, y:  2},
@@ -75,25 +76,25 @@ var ChessRules = function() {
               {x:  1, y: -2},
               {x:  2, y: -1}
             ];
-            var oneSpace = true;
+            oneSpace = true;
             legalMoves = legalMoves.concat(this.getLegalMovesGeneric(chessState, source, directions, oneSpace));
 
           } else if (pieceType == 'b') {
 
             // bishops move infinitely diagonally
-            var directions = [
+            directions = [
               {x:  1, y:  1},
               {x: -1, y:  1},
               {x: -1, y: -1},
               {x:  1, y: -1}
             ];
-            var oneSpace = false;
+            oneSpace = false;
             legalMoves = legalMoves.concat(this.getLegalMovesGeneric(chessState, source, directions, oneSpace));
 
           } else if (pieceType == 'q') {
 
             // queens move infinitely horizontally, vertically and diagonally
-            var directions = [
+            directions = [
               {x:  1, y:  0},
               {x:  1, y:  1},
               {x:  0, y:  1},
@@ -103,13 +104,13 @@ var ChessRules = function() {
               {x:  0, y: -1},
               {x:  1, y: -1}
             ];
-            var oneSpace = false;
+            oneSpace = false;
             legalMoves = legalMoves.concat(this.getLegalMovesGeneric(chessState, source, directions, oneSpace));
 
           } else if (pieceType == 'k') {
 
             // kings move one step horizontally, vertically and diagonally
-            var directions = [
+            directions = [
               {x:  1, y:  0},
               {x:  1, y:  1},
               {x:  0, y:  1},
@@ -119,7 +120,7 @@ var ChessRules = function() {
               {x:  0, y: -1},
               {x:  1, y: -1}
             ];
-            var oneSpace = true;
+            oneSpace = true;
             legalMoves = legalMoves.concat(this.getLegalMovesGeneric(chessState, source, directions, oneSpace));
 
             // kings can also castle
@@ -134,7 +135,7 @@ var ChessRules = function() {
         finalMoves = legalMoves;
       } else {
         // filter out moves that leave the king in check
-        var finalMoves = [];
+        finalMoves = [];
         for (var m = 0; m < legalMoves.length; m++) {
           var move = legalMoves[m];
           if (!this.willLeaveKingInCheck(chessState, move, true)) {
@@ -207,8 +208,8 @@ var ChessRules = function() {
 
               // promotion
               if (target.rowNumber == promotionRow) {
-                for (var c = 0; c < promotionChoices.length; c++) {
-                  var promotion = promotionChoices[c];
+                for (c = 0; c < promotionChoices.length; c++) {
+                  promotion = promotionChoices[c];
                   legalMoves.push({source: source, target: target, capture: targetPiece, promotion: promotion});
                 }
               }
@@ -355,7 +356,7 @@ var ChessRules = function() {
         chessState.setCastle('k', false);
       } else if (sourcePiece == 'R') {
         // white rook
-        var side = source.columnNumber == 0 ? 'Q' : 'K';
+        side = source.columnNumber == 0 ? 'Q' : 'K';
         chessState.setCastle(side, false);
       } else if (sourcePiece == 'K') {
         // white king
@@ -380,8 +381,8 @@ var ChessRules = function() {
           chessState.addPiece(rookTarget, chessState.removePiece(rookSource));
         } else if (target.columnNumber == source.columnNumber + 2) {
           // kingside
-          var rookSource = {rowNumber: target.rowNumber, columnNumber: boardSize.width - 1};
-          var rookTarget = {rowNumber: target.rowNumber, columnNumber: target.columnNumber - 1};
+          rookSource = {rowNumber: target.rowNumber, columnNumber: boardSize.width - 1};
+          rookTarget = {rowNumber: target.rowNumber, columnNumber: target.columnNumber - 1};
           chessState.addPiece(rookTarget, chessState.removePiece(rookSource));
         }
       }
@@ -570,8 +571,8 @@ var ChessRules = function() {
         move.columnUnique = true;
       }
 
-      for (var m1 = 0; m1 < moves.length; m1++) {
-        var move = moves[m1];
+      for (m1 = 0; m1 < moves.length; m1++) {
+        move = moves[m1];
         
         move.player = chessState.getPlayer();
         
@@ -615,7 +616,8 @@ var ChessRules = function() {
         moves[m1] = new ChessMove(move);
       }
     }
-  }.init();
+  };
+  $private.init();
 };
 
 module.exports = new ChessRules();

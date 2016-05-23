@@ -1,10 +1,8 @@
-"use strict";
-
 function clone(obj) {
   var copy;
 
   // Handle the 3 simple types, and null or undefined
-  if (null == obj || "object" != typeof obj) {
+  if (null == obj || 'object' != typeof obj) {
     return obj;
   }
 
@@ -360,7 +358,6 @@ var ChessState = function($options) {
     fromFenEnPassant: function(fenPart) {
       var boardSize = this.getBoardSize();
 
-      var fenPart;
       if (fenPart == '-') {
         return null;
       } else {
@@ -459,7 +456,8 @@ var ChessState = function($options) {
       return this.getMoveNumber().toString();
     }
 
-  }.init();
+  };
+  $private.init();
 };
 
 module.exports = ChessState;

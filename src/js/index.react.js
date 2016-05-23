@@ -1,12 +1,10 @@
-"use strict";
-
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var ChessBoard = require('./chess-game.js');
+var ChessGame = require('./components/ChessGame.react');
 
 ReactDOM.render((
-    <ChessBoard />
+    <ChessGame />
   ),
   document.getElementById('content')
 );

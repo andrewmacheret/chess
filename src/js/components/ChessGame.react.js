@@ -1,12 +1,10 @@
-"use strict";
-
 var React = require('react');
-var ReactDOM = require('react-dom');
+//var ReactDOM = require('react-dom');
 
-var ChessBoard = require('./chess-board.js');
+var ChessBoard = require('./ChessBoard.react');
 
-var ChessPlayer = require('./chess-player.js');
-var ChessComputer = require('./chess-computer.js');
+var ChessPlayer = require('../game-logic/ChessPlayer');
+var ChessComputer = require('../game-logic/ChessComputer');
 
 var ChessGame = React.createClass({
   propTypes: {
@@ -49,7 +47,6 @@ var ChessGame = React.createClass({
   },
 
   render: function() {
-    var board = null;
     if (this.state.players) {
       return (
         <ChessBoard players={this.state.players} />

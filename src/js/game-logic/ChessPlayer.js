@@ -1,5 +1,3 @@
-"use strict";
-
 var ChessPlayer = function() {
   var $public = this;
   var $private = {
@@ -15,7 +13,7 @@ var ChessPlayer = function() {
       return true;
     },
 
-    requestMove: function(fen, callback) {
+    requestMove: function(/*fen, callback*/) {
       // do nothing... wait for a drag and drop event
     },
 
@@ -39,7 +37,8 @@ var ChessPlayer = function() {
       }
     }
 
-  }.init();
+  };
+  $private.init();
 }
 
 module.exports = ChessPlayer;
