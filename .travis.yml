@@ -1,0 +1,40 @@
+language: node_js
+
+node_js:
+  - '6'
+
+env:
+  global:
+    # DOCKER_USERNAME and DOCKER_PASSWORD
+    - secure: "gpOPmFmeGOkNlHk0jlID0vmVFJhvLQPbV+VNIwdIIoqgiuCrQPzPRGC/3j1CbrFDkqTmRv7wPW8uqlXDt61h8tDa2TVsKZOTbk9ugI1djlndYy9ospS5PAc+w0BsMKkx6OFngxEYtbmsezBFb4dryBpDJjpnlvuIZxc3qDULqyxGKeK04eQ94l6mJ4mXmjmD/iGcHKh3JImmrtUPdB3ZUTViMQ541UBcCX0amSrONlG80Png5nOfiVrB6MnzyVq3X5/xsQMkShOESNCssYxdbZc/llGI11pMuLDq1MifSWIqFyDxu6EtOM25K61YHgkeDBBe6e3VA3/QNwxl41AuYYuvPg28uyPnQpgdYDeO/c0k+2q0GEHs847BmCVkO3sEwD+1xJvyWfcws1pYrQ7M8na78X2OoOKabuqDkl8TgmdP+XV2wTyB/I4O4pMT6QkOTSQGTNJo2K61h0hLXpArWQ83GEwHWQDT/eDMm0NZUH/EJI9f+CVrDP++TxC30LImzkszT9gy5ns8ImrkAOyPgqpPTud3adf/yhjLigBC1NQRHmztHFkibqdAK1eTX1ZlcD4iJOX9F7+CtWnz3xkZBvohgglwxZX87g9Cl+99pBWnBhdYoieIW6nADIk4dfdiWiiKJRhQntsQ8a8PVl5z+k34vlW5HZHqC21p7N9tv2k="
+    - secure: "AHDDGyMqNDum7vxV7aa8yvM3/eNKoYSTjsgWteBjkbEr7Ry22IQ+VaMsSmWXVc9309ZX9KW53CBjL7LU4UmnMQBei32hmiygBTTYZBxX8WYS3foxy6rFnSZmaZtTI7P7Ef3U2hwE9WaD7TvKt8bydBJs3vBavlv/cvFMriOLnF1QOm73mC35zhUKoULFtsuw+euHW12PcgxNSYbf8BHm/IBv6zR4BStc3x3mJci9G6K7lZfiN62sWoMQbNLiULydn/A2U/BoQK2J20D4ZFb5OmmzDvFfYPNV2/WswMbToNN5HMxCuvxvk+X9kuTbATRu9N4yEHc3L+Aq/mTrKJBMz0wJyE0TH2AgmUulK9AO+yZPkWsj+BinjI6jPJdnfAfZ23ntyTXjMVDahj73mH5K9H/5r6sXKj/ManuoLQs2gtuAdLKfELjk8Iz2tUO1oVhMEqL57KiNclY0VlCbyeA9506o7zErjxh6jt8k1DAFC5cS3GI1X4dpqkZa45tmC1AEDZFy6A1i++1hrVw9YjnX6T/Ic3YA+zNf39kmcZWKvWGyCVVGTGArlvhPFM6WVgWnnyOuk6hLBgmNmcaeP6ybWEd0N+xG994By3qlYaozIajWhdnoSEqNopN+KvHkKdzce9P4SsNuXYar67SWlYvKe6YEnRB/cfCHYtl4HRENBIQ="
+    - CONTAINER_NAME='vta-tracker-server'
+    - VERSION=1.0
+    - TEST_PORT='9999'
+    - MYSQL_ROOT_PASSWORD='test-password'
+
+install:
+  # install dependencies
+  - set -e
+  - npm install
+
+script:
+  # build and test
+  - set -e
+  - gulp test
+
+deploy:
+  provider: s3
+  access_key_id:
+detected repository as andrewmacheret/chess
+    secure: "PjM3maAqcya/JpHk/CwfGY9h8YmjqC9gnWaFWYO+9HYZwEOvqOW+TWHsJIIKnUnOCZqddxrZPK9dCH4J5ccPdxO1kB0gImcowTw4UlN2cRAI60zhsLXzafO/l81Y8QuLTL5R3h8/tUka8LqT+v1mowaUQRNUppsKDToLSKrFa1mzds+q2zpwa+DqT6YmckVvONmS520czoPHCtkZJmqn8Ms4OO1oEAwRhPsyq3oqaA+E4gdNMr7d6o8i/Eb82SfVzGXxzRIbkzhG7HMtYGDH1rtQIVhbGtYwIVcush53YBHP+4foh/YBNh2+OR5KrteVyb33QxFwKukyHm79sktXV2qqcW/rRQTOfKWTZnvvXMf4/++pjaiEyK5vCcIIEL1UCFAXjqc3Vz29iPFgMWK0kg/r9ZeOC9YOyp/y0QhT14ISVTgkJ//mqqOLWVs3FFwBqurbK4oYlQHEeGXN67ta4KzpVQL/gxJdDCKWPM2J7fSP/kCtt4lgdObWdiBCN/R3/MqzPYVtRMmquGJIa56gALqLCjlkfzv/F0IJJ8Ge1WLWlw7t+HKLvUXWuTnmmPv3wJZLjn5jq9O6tcCl44FMDnRO3WO5owVn8k60riBOKn4FeA5gyNurayZJiRP8gtRW2yWsoCT/RlxM5U2bBHKiUEG5PGmlivDuerC6FHTBNBE="
+  secret_access_key:
+detected repository as andrewmacheret/chess
+    secure: "AcsOEpP1jXlXWqvGcCTX7N/mQW17M0QgoKw18TdWjFMsEDX30cxe3cfgp696kRi4AdBhKGg52mbPJLgcCh3QgDCxqFoqDJDWouI9jbtghV5tpD6YpCu45ZghAx3LDCXybCPa6XU8X5KGtRBcwAHXafI7tek1Th0tQd0Ho3dI0HfXvG8QNtFdzOQ7BtisDM+hmof8Gi+YbDHSAQXrmD99bLDQXtZZWAjrv5VMoOHefgJ9UJg4xLvagmAB2o0ZbgwOC+koPWcPFeqqvrPrvnDMPwFo9T4z6dKyLozQUA0fc24U98h6GTKQHGE528xYVGrHjjgn9w93VpwYqdDC8pKAccr6mrXO+xyhu5g37Ph91qe5QApQUMT8yBRYZkSCzoLogC3dQR6cCilwRH1+97Q6MYCOMOtFBjFVLIPntaflZFXtWXOLQkDMle8nBPkM9XqH0Ui1wSkdu0ZLaZAy0S8CrayrJ9qU71fFZdjGYF53k/3+gu8v9bOx5EUVCeGliafMvoDhprHNhhQNrHk2VDIrE8vQmqxiKWOS3f4FWevI53CIYz1lAIJ555zIIv2N7rB3eh3lRr/00Zm3vW+4bMXYnnF70qEWeLO9d1IEGWwHtYWCw63HDdI/Fg9m2jbl3EFfdC11a8zIDW/SYp6YocBUq2+KztmsRGR75ycXMkfD5Ic="
+  bucket: andrewmacheret.com
+  skip_cleanup: true
+  acl: public_read
+  region: us-east-1
+  default_text_charset: utf-8
+  detect_encoding: true
+  local_dir: build
