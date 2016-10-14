@@ -6,7 +6,7 @@
 
 A web-based chess program written in [React](https://facebook.github.io/react/) and [React-dnd](http://gaearon.github.io/react-dnd/) that supports any combination of player vs AI. Includes support for drag and drop for human players and animation effects for computer players.
 
-See it running at [http://andrewmacheret.com/projects/chess](http://andrewmacheret.com/projects/chess).
+See it running at [https://andrewmacheret.com/projects/chess](https://andrewmacheret.com/projects/chess).
 
 Prereqs:
 * [Node.js](https://nodejs.org/) and [gulp](http://browserify.org/) on a linux server
