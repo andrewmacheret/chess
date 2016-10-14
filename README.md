@@ -2,11 +2,11 @@
 
 [![Build Status](https://travis-ci.org/andrewmacheret/chess.svg?branch=master)](https://travis-ci.org/andrewmacheret/chess) [![License](https://img.shields.io/badge/license-MIT-lightgray.svg)](https://github.com/andrewmacheret/chess/blob/master/LICENSE.md)
 
-![Game image](src/images/game.png?raw=true "Game image")
-
 A web-based chess program written in [React](https://facebook.github.io/react/) and [React-dnd](http://gaearon.github.io/react-dnd/) that supports any combination of player vs AI. Includes support for drag and drop for human players and animation effects for computer players.
 
 See it running at [https://andrewmacheret.com/projects/chess](https://andrewmacheret.com/projects/chess).
+
+![Game image](src/images/game.png?raw=true "Game image")
 
 Prereqs:
 * [Node.js](https://nodejs.org/) and [gulp](http://browserify.org/) on a linux server
