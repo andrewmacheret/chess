@@ -11,7 +11,7 @@ See it running at [https://andrewmacheret.com/projects/chess](https://andrewmach
 Prereqs:
 * [Node.js](https://nodejs.org/) and [gulp](http://browserify.org/) on a linux server
  * `npm install -g gulp` to install gulp if you already have Node.js
-* [andrewmacheret/chess-server](https://github.com/andrewmacheret/chess-server)
+* [andrewmacheret/chess-server](https://github.com/andrewmacheret/chess-server) or [andrewmacheret/chess-server-lambda](https://github.com/andrewmacheret/chess-server-lambda)
 * A web server (like [Apache](https://httpd.apache.org/)).
 
 Installation steps:
