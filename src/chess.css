@@ -301,10 +301,25 @@ button {
   cursor: pointer;
 }
 
-button.undo, button.redo, button.new-game {
+.game-buttons button {
   display: inline-block;
   margin: 5px;
   width: 100px;
+}
+
+.game-buttons * {
+  vertical-align: middle;
+}
+
+.game-buttons div {
+  display: inline-block;
+}
+
+.game-buttons .thinking {
+  background-image: url('./pulsing.svg');
+  background-size: cover;
+  width: 24px;
+  height: 24px;
 }
 
 button.player-choice {

@@ -1,13 +1,4 @@
-import reader from "properties-reader";
-
-// TODO: this should be moved to a shared properties class
-let movesUrl;
-fetch("app.properties")
-  .then((data) => data.text())
-  .then((text) => {
-    const properties = reader().read(text);
-    movesUrl = properties.get("main.movesUrl");
-  });
+import { getSetting } from "../settings";
 
 export default class ChessComputer {
   isHuman() {
@@ -16,7 +7,8 @@ export default class ChessComputer {
 
   async requestMove(fen, retries = 3) {
     try {
-      const data = await fetch(`${movesUrl}?${new URLSearchParams({ fen })}`);
+      const url = await getSetting("chess.movesUrl");
+      const data = await fetch(`${url}?${new URLSearchParams({ fen })}`);
       const json = await data.json();
       if (json && json.bestmove !== "(none)") {
         const source = json.bestmove.substring(0, 2);
@@ -31,6 +23,7 @@ export default class ChessComputer {
         // retry the request
         return await this.requestMove(fen, retries - 1);
       }
+      throw err;
     }
   }
 
