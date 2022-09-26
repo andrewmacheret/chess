@@ -1,6 +1,6 @@
 html {
   font-family: Helvetica, Arial, sans-serif;
-  font-color: #333;
+  color: #333;
   text-rendering: optimizelegibility;
 }
 
@@ -83,12 +83,10 @@ h2 {
   background-color: #cf8846;
 }
 
-.piece.piece-draggable {
-  /*
+/* .piece.piece-draggable {
   border: 1px solid green;
   box-sizing: border-box;
-  */
-}
+} */
 
 .square-over.square-droppable {
   border: 1px solid blue;
@@ -132,7 +130,7 @@ h2 {
 }
 
 .piece {
-  background-image: url('../images/pieces.png');
+  background-image: url('./pieces.png');
   background-size: 300px auto;
   background-repeat: no-repeat;
   cursor: pointer;
@@ -266,21 +264,21 @@ h2 {
 
 .moves {
   display: inline-block;
-  width: 136px;
   height: 408px;
   vertical-align: top;
   border: solid #222 1px;
   overflow-y: scroll;
   overflow-x: hidden;
+  font-family: monospace;
 }
 .moves-w, .moves-b {
   display: inline-block;
   width: 50px;
   vertical-align: top;
-  min-height: 398px;
+  min-height: 403px;
   font-size: 14px;
   text-align: left;
-  padding: 5px;
+  padding: 5px 0 0 10px;
 }
 .moves-w {
   border-width: 0 1px 0 0;
@@ -294,17 +292,27 @@ h2 {
   border-style: solid;
 }
 
-.player-choice {
+button {
   display: block;
-  font-size: 30px;
   padding: 0px;
   margin: 5px auto;
   border-radius: 5px;
   background-color: #ddd;
+  cursor: pointer;
+}
+
+button.undo, button.redo, button.new-game {
+  display: inline-block;
+  margin: 5px;
+  width: 100px;
+}
+
+button.player-choice {
+  font-size: 30px;
   width: 250px;
 }
 
-.player-choice .piece {
+button.player-choice .piece {
   vertical-align: text-bottom;
   display: inline-block;
   position: relative;
@@ -315,11 +323,28 @@ h2 {
   color: #800;
 }
 
-.player-choice .piece.piece-ai::before {
+button.player-choice .piece.piece-ai::before {
   content: "AI";
   font-size: 30px;
 }
 
-.player-choice .piece.piece-human::before {
+button.player-choice .piece.piece-human::before {
   content: "Human";
+}
+
+.game-info {
+  width: 552px;
+  border: solid #222 1px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 5px 15px;
+  font-family: monospace;
+}
+
+#fen {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+  width: 100%;
 }
