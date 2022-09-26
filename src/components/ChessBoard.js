@@ -22,6 +22,8 @@ export default function ChessBoard({
 }) {
   const [chessState, setChessState] = useState(() => ChessState.starting());
   const [futureChessStates, setFutureChessStates] = useState([]);
+  const [paused, setPaused] = useState(false);
+  const [thinking, setThinking] = useState(false);
 
   const { width, height } = chessState.getBoardSize();
 
@@ -166,22 +168,32 @@ export default function ChessBoard({
 
   // request a move whenever the current player / state changes
   useEffect(() => {
-    if (!gameStatus.gameOver) {
+    if (!gameStatus.gameOver && !paused) {
+      setThinking(true);
       currentPlayer
         .requestMove(fen)
         .then(({ source, target, promotion }) => {
-          if (source) {
+          if (source && !paused) {
             doMove(source, target, promotion);
           }
         })
         .catch((err) => {
           console.error(err);
+        })
+        .finally(() => {
+          setThinking(false);
         });
     }
-  }, [currentPlayer, fen, gameStatus.gameOver, doMove]);
+  }, [currentPlayer, fen, gameStatus.gameOver, doMove, paused]);
 
-  // animate if computer, don't animate if human
-  const animate = currentPlayer && !currentPlayer.isHuman();
+  const pause = useCallback(() => {
+    setPaused(true);
+  }, []);
+  const resume = useCallback(() => {
+    setPaused(false);
+  }, []);
+
+  const isComputer = currentPlayer && !currentPlayer.isHuman();
 
   const squares = [];
   for (let rowNumber = 0; rowNumber < height; rowNumber++) {
@@ -214,7 +226,7 @@ export default function ChessBoard({
 
         pieces.push(
           <ChessPiece
-            animate={animate}
+            animate={isComputer}
             move={move}
             key={pieceLetter}
             originSquare={ref}
@@ -226,7 +238,7 @@ export default function ChessBoard({
         if (move && move.capture) {
           pieces.push(
             <ChessPiece
-              animate={animate}
+              animate={isComputer}
               capture={true}
               key={"x" + pieceLetter}
               originSquare={ref}
@@ -242,7 +254,7 @@ export default function ChessBoard({
       ) {
         pieces.push(
           <ChessPiece
-            animate={animate}
+            animate={isComputer}
             move={lastMove}
             key={"x" + pieceLetter}
             originSquare={ref}
@@ -253,7 +265,7 @@ export default function ChessBoard({
 
       squares.push(
         <ChessSquare
-          animate={animate}
+          animate={isComputer}
           name={ref}
           key={ref}
           rowNumber={rowNumber}
@@ -302,7 +314,7 @@ export default function ChessBoard({
             </a>{" "}
             {fen}
           </div>
-          <div className="button-group">
+          <div className="button-group game-buttons">
             <button
               className="undo"
               onClick={undo}
@@ -320,6 +332,20 @@ export default function ChessBoard({
             <button className="new-game" onClick={newGame}>
               New Game
             </button>
+            {isComputer && (
+              <div>
+                {paused ? (
+                  <button className="resume" onClick={resume}>
+                    Resume
+                  </button>
+                ) : (
+                  <button className="pause" onClick={pause}>
+                    Pause
+                  </button>
+                )}
+                {thinking && <div className="thinking" />}
+              </div>
+            )}
           </div>
         </div>
       </div>
