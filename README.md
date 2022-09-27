@@ -9,17 +9,23 @@ See it running at [https://andrewmacheret.com/projects/chess](https://andrewmach
 Prereqs:
 
 - [Node.js](https://nodejs.org/)
+- Yarn: `npm install -g yarn`
 - [andrewmacheret/chess-server](https://github.com/andrewmacheret/chess-server) or [andrewmacheret/chess-server-lambda](https://github.com/andrewmacheret/chess-server-lambda)
 
-Installation steps:
+Run:
 
-- `npm install` or `yarn install`
-- Modify `movesUrl` in [public/app.properties](public/app.properties) as needed
-- `npm start` or `yarn start`
+- Modify `movesUrl` in [public/app.json](public/app.json) as needed
+- `yarn`
+- `yarn start`
+
+Build and deploy:
+
+- `yarn build`
+- `aws s3 sync --delete build/ s3://andrewmacheret.com/projects/chess/`
 
 Test it:
 
-- Open `build/index.html` in a browser.
-- For testing purposes, if you don't have a web server, running `python -m SimpleHTTPServer` in the `build/` directory and navigating to [http://localhost:8000](http://localhost:8000) should do the trick.
-- You should see several buttons asking what kind of chess game to play.
-- To troubleshoot, look for javascript errors in the browser console.
+- `yarn test`
+- Browser: [http://localhost:3000](http://localhost:3000)
+  - You should see several buttons asking what kind of chess game to play.
+  - To troubleshoot, look for javascript errors in the browser console.
