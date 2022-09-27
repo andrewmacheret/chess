@@ -7,7 +7,7 @@ export default class ChessComputer {
 
   async requestMove(fen, retries = 3) {
     try {
-      const url = await getSetting("chess.movesUrl");
+      const url = await getSetting("movesUrl");
       const data = await fetch(`${url}?${new URLSearchParams({ fen })}`);
       const json = await data.json();
       if (json && json.bestmove !== "(none)") {
