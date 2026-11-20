@@ -1,6 +1,47 @@
+:root {
+  color-scheme: light dark;
+  --page-bg: #f6f1ea;
+  --text: #333;
+  --text-muted: #6b625a;
+  --panel-bg: #fff;
+  --panel-border: #222;
+  --captured-bg: #fff;
+  --link: #213483;
+  --link-hover: #4763d1;
+  --button-bg: #fff;
+  --button-bg-hover: #f3e6d8;
+  --button-border: #b9a998;
+  --button-text: #333;
+  --accent: #cf8846;
+  --accent-text: #fff;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page-bg: #1c1a18;
+    --text: #e8e2db;
+    --text-muted: #a69c92;
+    --panel-bg: #262320;
+    --panel-border: #4a443e;
+    /* black pieces need a light background to stay visible */
+    --captured-bg: #b9a58e;
+    --link: #8fa8ff;
+    --link-hover: #b8c8ff;
+    --button-bg: #2e2a26;
+    --button-bg-hover: #3a342e;
+    --button-border: #5a524a;
+    --button-text: #e8e2db;
+    --accent: #cf8846;
+    --accent-text: #1c1a18;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+}
+
 html {
   font-family: Helvetica, Arial, sans-serif;
-  color: #333;
+  color: var(--text);
+  background-color: var(--page-bg);
   text-rendering: optimizelegibility;
 }
 
@@ -18,35 +59,36 @@ img {
   vertical-align: middle;
 }
 
-a:link {
-  text-decoration: none;
-  color: #213483;
-}
-
+a:link,
 a:visited {
   text-decoration: none;
-  color: #213483;
+  color: var(--link);
 }
 
 a:hover {
   text-decoration: none;
-  color: #4763d1;
+  color: var(--link-hover);
 }
 
 a:active {
   text-decoration: none;
 }
 
-h1 {
-  margin: 10px;
-  font-size: 32px;
-  font-weight: bold;
+.app {
+  padding: 16px 8px 32px;
 }
 
-h2 {
-  margin: 10px;
-  font-size: 14px;
-  font-weight: normal;
+.app-title {
+  margin: 0 0 16px;
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.app-subtitle {
+  margin: 0 0 16px;
+  color: var(--text-muted);
+  font-size: 18px;
 }
 
 .code {
@@ -238,8 +280,9 @@ h2 {
   width: 50px;
   vertical-align: top;
   border-width: 1px 0;
-  border-color: #222;
+  border-color: var(--panel-border);
   border-style: solid;
+  background-color: var(--captured-bg);
 }
 .captured-w, .captured-b {
   display: block;
@@ -249,7 +292,7 @@ h2 {
   height: 200px;
 }
 .captured-b {
-  border-top: solid #222 1px;
+  border-top: solid var(--panel-border) 1px;
   padding-top: 1px;
 }
 .captured .piece {
@@ -266,7 +309,8 @@ h2 {
   display: inline-block;
   height: 408px;
   vertical-align: top;
-  border: solid #222 1px;
+  border: solid var(--panel-border) 1px;
+  background-color: var(--panel-bg);
   overflow-y: scroll;
   overflow-x: hidden;
   font-family: monospace;
@@ -282,37 +326,68 @@ h2 {
 }
 .moves-w {
   border-width: 0 1px 0 0;
-  border-color: #222;
+  border-color: var(--panel-border);
   border-style: solid;
   margin-right: -1px;
 }
 .moves-b {
   border-width: 0 0 0 1px;
-  border-color: #222;
+  border-color: var(--panel-border);
   border-style: solid;
 }
 
 button {
-  display: block;
-  padding: 0px;
-  margin: 5px auto;
-  border-radius: 5px;
-  background-color: #ddd;
+  padding: 6px 14px;
+  border: 1px solid var(--button-border);
+  border-radius: 6px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  box-shadow: var(--shadow);
   cursor: pointer;
+  transition: background-color 120ms, border-color 120ms, transform 120ms;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--button-bg-hover);
+  border-color: var(--accent);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+  box-shadow: none;
+}
+
+.board-wrapper {
+  display: inline-block;
+}
+
+.game-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .game-buttons button {
-  display: inline-block;
-  margin: 5px;
-  width: 100px;
-}
-
-.game-buttons * {
-  vertical-align: middle;
+  min-width: 84px;
+  font-size: 14px;
 }
 
 .game-buttons div {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .game-buttons .thinking {
@@ -322,38 +397,92 @@ button {
   height: 24px;
 }
 
+.game-buttons .new-game {
+  margin-left: auto;
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+.game-buttons .new-game:hover {
+  background-color: var(--accent);
+  filter: brightness(1.08);
+}
+
+.player-choices {
+  display: grid;
+  grid-template-columns: repeat(2, 230px);
+  gap: 14px;
+  justify-content: center;
+}
+
+@media (max-width: 520px) {
+  .player-choices {
+    grid-template-columns: 230px;
+  }
+}
+
 button.player-choice {
-  font-size: 30px;
-  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 18px 16px 14px;
+  border-radius: 12px;
+  background-color: var(--panel-bg);
 }
 
-button.player-choice .piece {
-  vertical-align: text-bottom;
-  display: inline-block;
+button.player-choice:hover {
+  background-color: var(--panel-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.player-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* the pawns sit on board-colored tiles so both colors show in light and dark mode */
+.player-side .piece {
   position: relative;
-  text-align: middle;
+  display: block;
+  border-radius: 8px;
+  background-color: #ffcd9e;
+}
+
+.player-side .piece-p {
+  background-color: #cf8846;
+}
+
+.player-label {
+  font-size: 15px;
   font-weight: bold;
+}
+
+.player-vs {
+  color: var(--text-muted);
   font-size: 14px;
-  text-shadow: 0px 0px 10px #fff;
-  color: #800;
-}
-
-button.player-choice .piece.piece-ai::before {
-  content: "AI";
-  font-size: 30px;
-}
-
-button.player-choice .piece.piece-human::before {
-  content: "Human";
+  font-style: italic;
+  margin-bottom: 22px;
 }
 
 .game-info {
-  width: 552px;
-  border: solid #222 1px;
-  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px 14px;
+  border: solid var(--panel-border) 1px;
+  background-color: var(--panel-bg);
   text-align: left;
-  padding: 5px 15px;
-  font-family: monospace;
+}
+
+#game-state {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
 }
 
 #fen {
@@ -362,4 +491,7 @@ button.player-choice .piece.piece-human::before {
   text-overflow: ellipsis;
   display: inline-block;
   width: 100%;
+  color: var(--text-muted);
+  font-family: monospace;
+  font-size: 13px;
 }

@@ -1,0 +1,61 @@
+name: Test, build and deploy
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  S3_PATH: s3://andrewmacheret.com/projects/chess
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+      # Everything under projects/chess comes from this repo, so --delete is safe.
+      # Files in assets/ have a content hash in their name, so they can be cached forever.
+      # New assets go up first and old ones are removed last, so the live page never points at a missing file.
+      - name: Upload to S3
+        run: |
+          aws s3 sync dist/assets "$S3_PATH/assets" \
+            --cache-control 'public, max-age=31536000, immutable'
+          aws s3 sync dist "$S3_PATH" --delete --exclude 'assets/*' --cache-control 'no-cache'
+          aws s3 sync dist/assets "$S3_PATH/assets" --delete \
+            --cache-control 'public, max-age=31536000, immutable'
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}" \
+            --paths '/projects/chess/*'
