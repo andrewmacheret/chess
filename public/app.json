@@ -1,3 +1,4 @@
 {
-    "movesUrl": "https://chess.andrewmacheret.com/moves"
+    "movesUrl": "https://chess.andrewmacheret.com/moves",
+    "depth": 16
 }

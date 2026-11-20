@@ -8,7 +8,9 @@ export default class ChessComputer {
   async requestMove(fen, retries = 3) {
     try {
       const url = await getSetting("movesUrl");
-      const data = await fetch(`${url}?${new URLSearchParams({ fen })}`);
+      const depth = await getSetting("depth");
+      const params = new URLSearchParams({ fen, ...(depth && { depth }) });
+      const data = await fetch(`${url}?${params}`);
       const json = await data.json();
       if (json && json.bestmove !== "(none)") {
         const source = json.bestmove.substring(0, 2);

@@ -13,6 +13,9 @@ import ChessPiece from "./ChessPiece";
 const DragBackend =
   "ontouchstart" in document.documentElement ? TouchBackend : HTML5Backend;
 
+// the shortest time a computer move takes, so the 500ms move animation can finish
+const minComputerMoveMillis = 1000;
+
 const squaresMatch = (a, b) =>
   a.rowNumber === b.rowNumber && a.columnNumber === b.columnNumber;
 
@@ -166,24 +169,40 @@ export default function ChessBoard({
     setFutureChessStates(newFutureChessStates);
   }, [futureChessStates]);
 
-  // request a move whenever the current player / state changes
+  // ask the computer for a move whenever the current player / state changes
+  // (humans move by drag and drop instead)
   useEffect(() => {
-    if (!gameStatus.gameOver && !paused) {
-      setThinking(true);
-      currentPlayer
-        .requestMove(fen)
-        .then(({ source, target, promotion }) => {
-          if (source && !paused) {
-            doMove(source, target, promotion);
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-        })
-        .finally(() => {
-          setThinking(false);
-        });
+    if (gameStatus.gameOver || paused || currentPlayer.isHuman()) {
+      return;
     }
+    let cancelled = false;
+    const startMillis = Date.now();
+    setThinking(true);
+    currentPlayer
+      .requestMove(fen)
+      .then(async ({ source, target, promotion }) => {
+        // give the last move's animation time to finish before moving again
+        const waitMillis = minComputerMoveMillis - (Date.now() - startMillis);
+        if (waitMillis > 0) {
+          await new Promise((resolve) => setTimeout(resolve, waitMillis));
+        }
+        // skip the move if the game changed while we waited (undo, pause, etc)
+        if (source && !cancelled) {
+          doMove(source, target, promotion);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setThinking(false);
+        }
+      });
+    return () => {
+      cancelled = true;
+      setThinking(false);
+    };
   }, [currentPlayer, fen, gameStatus.gameOver, doMove, paused]);
 
   const pause = useCallback(() => {
@@ -193,7 +212,10 @@ export default function ChessBoard({
     setPaused(false);
   }, []);
 
-  const isComputer = currentPlayer && !currentPlayer.isHuman();
+  // only animate moves the computer made, a human already dragged the piece there
+  const lastPlayer = players[chessState.getPlayer() === "w" ? "b" : "w"];
+  const animateLastMove = !lastPlayer.isHuman();
+  const hasComputer = Object.values(players).some((player) => !player.isHuman());
 
   const squares = [];
   for (let rowNumber = 0; rowNumber < height; rowNumber++) {
@@ -226,7 +248,7 @@ export default function ChessBoard({
 
         pieces.push(
           <ChessPiece
-            animate={isComputer}
+            animate={animateLastMove}
             move={move}
             key={pieceLetter}
             originSquare={ref}
@@ -238,7 +260,7 @@ export default function ChessBoard({
         if (move && move.capture) {
           pieces.push(
             <ChessPiece
-              animate={isComputer}
+              animate={animateLastMove}
               capture={true}
               key={"x" + pieceLetter}
               originSquare={ref}
@@ -254,7 +276,7 @@ export default function ChessBoard({
       ) {
         pieces.push(
           <ChessPiece
-            animate={isComputer}
+            animate={animateLastMove}
             move={lastMove}
             key={"x" + pieceLetter}
             originSquare={ref}
@@ -265,7 +287,7 @@ export default function ChessBoard({
 
       squares.push(
         <ChessSquare
-          animate={isComputer}
+          animate={animateLastMove}
           name={ref}
           key={ref}
           rowNumber={rowNumber}
@@ -332,7 +354,7 @@ export default function ChessBoard({
             <button className="new-game" onClick={newGame}>
               New Game
             </button>
-            {isComputer && (
+            {hasComputer && (
               <div>
                 {paused ? (
                   <button className="resume" onClick={resume}>
@@ -343,7 +365,8 @@ export default function ChessBoard({
                     Pause
                   </button>
                 )}
-                {thinking && <div className="thinking" />}
+                {/* always rendered so the buttons don't shift when it shows */}
+                <div className={`thinking${thinking ? "" : " thinking-hidden"}`} />
               </div>
             )}
           </div>
