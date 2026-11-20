@@ -1,6 +1,6 @@
 # chess
 
-A web-based chess program written in [React](https://react.dev/) and [React DnD](https://react-dnd.github.io/react-dnd/) that supports any combination of player vs AI. Includes support for drag and drop for human players and animation effects for computer players. Follows your system's light or dark mode.
+A web-based chess program written in [React](https://react.dev/) and [React DnD](https://react-dnd.github.io/react-dnd/) that supports any combination of player vs AI. Includes support for drag and drop for human players and animation effects for computer players.
 
 See it running at [https://andrewmacheret.com/projects/chess](https://andrewmacheret.com/projects/chess).
 
