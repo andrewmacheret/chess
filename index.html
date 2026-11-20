@@ -11,9 +11,29 @@
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♞</text></svg>" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="only light" />
+  <meta name="color-scheme" content="light dark" />
   <meta name="darkreader-lock" />
-  <meta name="theme-color" content="#f6f1ea" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f1ea" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c1a18" />
+  <script>
+    (function () {
+      var darkQuery = matchMedia("(prefers-color-scheme: dark)");
+      // Chrome's forced dark mode turns the Canvas color dark even on a light page
+      function isForcedDark() {
+        var probe = document.createElement("div");
+        probe.style.cssText = "display: none; color-scheme: only light; background-color: Canvas";
+        document.documentElement.appendChild(probe);
+        var forced = getComputedStyle(probe).backgroundColor !== "rgb(255, 255, 255)";
+        probe.remove();
+        return forced;
+      }
+      function update() {
+        document.documentElement.classList.toggle("dark", darkQuery.matches || isForcedDark());
+      }
+      update();
+      darkQuery.addEventListener("change", update);
+    })();
+  </script>
   <link rel="manifest" href="./manifest.json" />
 
   <!-- title -->
