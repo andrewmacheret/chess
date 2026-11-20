@@ -12,14 +12,10 @@ Prereqs:
 
 AI engine:
 
-- By default the AI is [Stockfish 19](https://github.com/nmrugg/stockfish.js) (the lite, single-threaded WebAssembly build) running in the browser in a web worker. It starts downloading in the background when the page loads (about 1.2 MB gzipped).
-- It can also use [andrewmacheret/chess-server-lambda](https://github.com/andrewmacheret/chess-server-lambda) instead. If the browser engine fails, the server is used as a backup.
-- Settings in [public/app.json](public/app.json):
-  - `engine`: `local` (browser) or `server` (Lambda)
-  - `movesUrl`: the Lambda API, used for `server` and as the backup
-  - `depth`: how deep Stockfish searches (each search also stops after 3 seconds)
-- Add `?engine=server` or `?engine=local` to the page URL to override `engine`.
+- The AI is [Stockfish 19](https://github.com/nmrugg/stockfish.js) (the lite, single-threaded WebAssembly build) running in the browser in a web worker. It starts downloading in the background when the page loads (about 1.2 MB gzipped).
+- `depth` in [public/app.json](public/app.json) sets how deep Stockfish searches. Each search also stops after 3 seconds.
 - Stockfish is GPL-3.0. It's served as its own files, and the page links to its source and license.
+- The AI used to run on AWS Lambda in [andrewmacheret/chess-server-lambda](https://github.com/andrewmacheret/chess-server-lambda), which is now archived.
 
 Run:
 
@@ -27,7 +23,6 @@ Run:
 - `npm run dev`
 - Browser: [http://localhost:5173](http://localhost:5173)
   - You should see four buttons asking what kind of chess game to play.
-  - The Lambda API only allows requests from `https://andrewmacheret.com`, so `?engine=server` doesn't work locally.
 
 Test and build:
 
