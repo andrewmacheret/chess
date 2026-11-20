@@ -310,12 +310,22 @@ export default class ChessState {
     );
   }
 
+  // FEN gives the square the pawn skipped over, but we store the square the pawn landed on
+  #enPassantRowShift() {
+    // white is moving, so black's pawn just moved down the board (rowNumber goes up)
+    return this.getPlayer() === "w" ? 1 : -1;
+  }
+
   #fromFenEnPassant(fenPart) {
     if (fenPart === "-") {
       return null;
     }
     const { height } = this.getBoardSize();
-    const rowNumber = height - (fenPart.charCodeAt(1) - this.#_1) - 1;
+    const rowNumber =
+      height -
+      (fenPart.charCodeAt(1) - this.#_1) -
+      1 +
+      this.#enPassantRowShift();
     const columnNumber = fenPart.charCodeAt(0) - this.#_a;
     return { rowNumber, columnNumber };
   }
@@ -384,10 +394,9 @@ export default class ChessState {
     }
 
     const { height } = this.getBoardSize();
+    const rowNumber = enPassant.rowNumber - this.#enPassantRowShift();
     const row = String.fromCharCode(this.#_a + enPassant.columnNumber);
-    const column = String.fromCharCode(
-      this.#_1 + (height - enPassant.rowNumber - 1)
-    );
+    const column = String.fromCharCode(this.#_1 + (height - rowNumber - 1));
     return row + column;
   }
 
