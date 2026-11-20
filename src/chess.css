@@ -4,7 +4,9 @@
   --text: #333;
   --text-muted: #6b625a;
   --panel-bg: #fff;
-  --panel-border: #222;
+  --panel-border: #e2d8cc;
+  --board-frame: #8a5a2e;
+  --radius: 10px;
   --captured-bg: #fff;
   --link: #213483;
   --link-hover: #4763d1;
@@ -15,6 +17,7 @@
   --accent: #cf8846;
   --accent-text: #fff;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 10px 30px rgba(60, 40, 20, 0.15), 0 2px 6px rgba(60, 40, 20, 0.08);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,7 +26,8 @@
     --text: #e8e2db;
     --text-muted: #a69c92;
     --panel-bg: #262320;
-    --panel-border: #4a443e;
+    --panel-border: #3a352f;
+    --board-frame: #5a3c20;
     /* black pieces need a light background to stay visible */
     --captured-bg: #b9a58e;
     --link: #8fa8ff;
@@ -35,18 +39,20 @@
     --accent: #cf8846;
     --accent-text: #1c1a18;
     --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.3);
   }
 }
 
 html {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
   color: var(--text);
   background-color: var(--page-bg);
   text-rendering: optimizelegibility;
 }
 
 input, select, button, textarea {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: inherit;
   font-size: 16px;
 }
 
@@ -75,20 +81,31 @@ a:active {
 }
 
 .app {
-  padding: 16px 8px 32px;
+  padding: 32px 8px 32px;
 }
 
 .app-title {
   margin: 0 0 16px;
-  font-size: 32px;
-  font-weight: bold;
-  letter-spacing: 0.5px;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .app-footer {
-  margin-top: 24px;
+  margin-top: 28px;
   color: var(--text-muted);
-  font-size: 12px;
+  font-size: 11px;
+  opacity: 0.35;
+  transition: opacity 200ms;
+}
+
+.app-footer:hover {
+  opacity: 0.8;
+}
+
+.app-footer a:link,
+.app-footer a:visited {
+  color: inherit;
 }
 
 .app-subtitle {
@@ -108,13 +125,18 @@ a:active {
 }
 
 .board {
-  border: solid #222 1px;
+  border: solid var(--board-frame) 1px;
+  border-radius: 6px;
   padding: 3px;
   display: inline-block;
+  background-color: var(--board-frame);
+  box-shadow: var(--shadow-lg);
 }
 
 .squares {
-  border: solid #222 1px;
+  border: solid var(--board-frame) 1px;
+  border-radius: 3px;
+  overflow: hidden;
   position: relative;
   width: 400px;
   height: 400px;
@@ -289,6 +311,7 @@ a:active {
   border-color: var(--panel-border);
   border-style: solid;
   background-color: var(--captured-bg);
+  box-shadow: var(--shadow);
 }
 .captured-w, .captured-b {
   display: block;
@@ -317,9 +340,14 @@ a:active {
   vertical-align: top;
   border: solid var(--panel-border) 1px;
   background-color: var(--panel-bg);
-  overflow-y: scroll;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  box-shadow: var(--shadow);
+  overflow-y: auto;
   overflow-x: hidden;
-  font-family: monospace;
+  scrollbar-width: thin;
+  scrollbar-color: var(--button-border) transparent;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-variant-numeric: tabular-nums;
 }
 .moves-w, .moves-b {
   display: inline-block;
@@ -343,9 +371,10 @@ a:active {
 }
 
 button {
-  padding: 6px 14px;
-  border: 1px solid var(--button-border);
-  border-radius: 6px;
+  padding: 7px 16px;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  font-weight: 500;
   background-color: var(--button-bg);
   color: var(--button-text);
   box-shadow: var(--shadow);
@@ -438,14 +467,15 @@ button.player-choice {
   justify-content: center;
   gap: 18px;
   padding: 18px 16px 14px;
-  border-radius: 12px;
+  border-radius: 14px;
   background-color: var(--panel-bg);
+  box-shadow: var(--shadow-lg);
 }
 
 button.player-choice:hover {
   background-color: var(--panel-bg);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(60, 40, 20, 0.22);
 }
 
 .player-side {
@@ -483,9 +513,11 @@ button.player-choice:hover {
   box-sizing: border-box;
   width: 100%;
   margin-top: 8px;
-  padding: 10px 14px;
+  padding: 12px 16px;
   border: solid var(--panel-border) 1px;
+  border-radius: var(--radius);
   background-color: var(--panel-bg);
+  box-shadow: var(--shadow);
   text-align: left;
 }
 
@@ -502,6 +534,6 @@ button.player-choice:hover {
   display: inline-block;
   width: 100%;
   color: var(--text-muted);
-  font-family: monospace;
-  font-size: 13px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
 }
