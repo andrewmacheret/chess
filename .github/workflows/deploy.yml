@@ -47,13 +47,15 @@ jobs:
       # Everything under projects/chess comes from this repo, so --delete is safe.
       # Files in assets/ have a content hash in their name, so they can be cached forever.
       # New assets go up first and old ones are removed last, so the live page never points at a missing file.
+      # Browsers only load the Stockfish .wasm file if it's served as application/wasm.
       - name: Upload to S3
         run: |
-          aws s3 sync dist/assets "$S3_PATH/assets" \
-            --cache-control 'public, max-age=31536000, immutable'
+          cache='public, max-age=31536000, immutable'
+          aws s3 sync dist/assets "$S3_PATH/assets" --exclude '*.wasm' --cache-control "$cache"
+          aws s3 sync dist/assets "$S3_PATH/assets" --exclude '*' --include '*.wasm' \
+            --content-type application/wasm --cache-control "$cache"
           aws s3 sync dist "$S3_PATH" --delete --exclude 'assets/*' --cache-control 'no-cache'
-          aws s3 sync dist/assets "$S3_PATH/assets" --delete \
-            --cache-control 'public, max-age=31536000, immutable'
+          aws s3 sync dist/assets "$S3_PATH/assets" --delete --size-only
       - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation \

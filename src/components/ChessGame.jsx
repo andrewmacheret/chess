@@ -78,6 +78,11 @@ export default function ChessGame() {
           </div>
         </>
       )}
+      <footer className="app-footer">
+        AI by{" "}
+        <a href="https://github.com/nmrugg/stockfish.js">Stockfish</a>{" "}
+        (<a href="https://github.com/nmrugg/stockfish.js/blob/master/Copying.txt">GPL-3.0</a>)
+      </footer>
     </main>
   );
 }

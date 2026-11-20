@@ -85,6 +85,12 @@ a:active {
   letter-spacing: 0.5px;
 }
 
+.app-footer {
+  margin-top: 24px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
 .app-subtitle {
   margin: 0 0 16px;
   color: var(--text-muted);
