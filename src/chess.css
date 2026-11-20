@@ -19,6 +19,37 @@
   --shadow-lg: 0 10px 30px rgba(60, 40, 20, 0.15), 0 2px 6px rgba(60, 40, 20, 0.08);
 }
 
+/*
+  index.html adds the dark class for dark mode, and also when Chrome's
+  "Auto Dark Mode for Web Contents" flag darkens the page on its own.
+  The peach squares are drawn as an SVG image so Chrome's flag can't darken them.
+*/
+:root.dark {
+  color-scheme: only dark;
+  --page-bg: #1c1a18;
+  --text: #e8e2db;
+  --text-muted: #a69c92;
+  --panel-bg: #262320;
+  --panel-border: #4a443e;
+  --soft-border: #3a352f;
+  --link: #8fa8ff;
+  --link-hover: #b8c8ff;
+  --button-bg: #2e2a26;
+  --button-bg-hover: #3a342e;
+  --button-border: #5a524a;
+  --button-text: #e8e2db;
+  /* black pieces need a light background to stay visible */
+  --captured-bg: #ffcd9e;
+  --accent-text: #1c1a18;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.dark .captured {
+  background-image: url('./light-square.svg');
+  background-size: 100% 100%;
+}
+
 html {
   font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -120,6 +151,8 @@ a:active {
 
 .square-white {
   background-color: #ffcd9e;
+  background-image: url('./light-square.svg');
+  background-size: 100% 100%;
 }
 .square-black {
   background-color: #cf8846;
@@ -172,8 +205,8 @@ a:active {
 }
 
 .piece {
-  background-image: url('./pieces.png');
-  background-size: 300px auto;
+  background-origin: border-box;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   cursor: pointer;
   z-index: 2;
@@ -190,86 +223,44 @@ a:active {
   display: inline-block;
   width: 25px;
   height: 25px;
-  background-size: 150px auto;
 }
 
 .piece-K {
-  background-position: -1px -1px;
+  background-image: url('./pieces/wK.svg');
 }
 .piece-Q {
-  background-position: -51px -1px;
+  background-image: url('./pieces/wQ.svg');
 }
 .piece-B {
-  background-position: -101px -1px;
+  background-image: url('./pieces/wB.svg');
 }
 .piece-N {
-  background-position: -151px -1px;
+  background-image: url('./pieces/wN.svg');
 }
 .piece-R {
-  background-position: -201px -1px;
+  background-image: url('./pieces/wR.svg');
 }
 .piece-P {
-  background-position: -251px -1px;
+  background-image: url('./pieces/wP.svg');
 }
-
 .piece-k {
-  background-position: -1px -51px;
+  background-image: url('./pieces/bK.svg');
 }
 .piece-q {
-  background-position: -51px -51px;
+  background-image: url('./pieces/bQ.svg');
 }
 .piece-b {
-  background-position: -101px -51px;
+  background-image: url('./pieces/bB.svg');
 }
 .piece-n {
-  background-position: -151px -51px;
+  background-image: url('./pieces/bN.svg');
 }
 .piece-r {
-  background-position: -201px -51px;
+  background-image: url('./pieces/bR.svg');
 }
 .piece-p {
-  background-position: -251px -51px;
+  background-image: url('./pieces/bP.svg');
 }
-
-
-.captured .piece-K {
-  background-position: -1px -1px;
-}
-.captured .piece-Q {
-  background-position: -26px -1px;
-}
-.captured .piece-B {
-  background-position: -51px -1px;
-}
-.captured .piece-N {
-  background-position: -76px -1px;
-}
-.captured .piece-R {
-  background-position: -101px -1px;
-}
-.captured .piece-P {
-  background-position: -126px -1px;
-}
-
-.captured .piece-k {
-  background-position: -1px -26px;
-}
-.captured .piece-q {
-  background-position: -26px -26px;
-}
-.captured .piece-b {
-  background-position: -51px -26px;
-}
-.captured .piece-n {
-  background-position: -76px -26px;
-}
-.captured .piece-r {
-  background-position: -101px -26px;
-}
-.captured .piece-p {
-  background-position: -126px -26px;
-}
-
 
 .piece-dragging {
   display: none;
@@ -301,7 +292,6 @@ a:active {
   display: inline-block;
   width: 25px;
   height: 25px;
-  background-size: 150px auto;
   margin: -2px 0;
 }
 
@@ -459,6 +449,10 @@ button.player-choice:hover {
   display: block;
   border-radius: 8px;
   background-color: #ffcd9e;
+}
+
+.player-side .piece-P {
+  background-image: url('./pieces/wP.svg'), url('./light-square.svg');
 }
 
 .player-side .piece-p {

@@ -1,6 +1,6 @@
 # chess
 
-A web-based chess program written in [React](https://react.dev/) and [React DnD](https://react-dnd.github.io/react-dnd/) that supports any combination of player vs AI. Includes support for drag and drop for human players and animation effects for computer players.
+A web-based chess program written in [React](https://react.dev/) and [React DnD](https://react-dnd.github.io/react-dnd/) that supports any combination of player vs AI. Includes support for drag and drop for human players and animation effects for computer players. Follows your system's light or dark mode.
 
 See it running at [https://andrewmacheret.com/projects/chess](https://andrewmacheret.com/projects/chess).
 
@@ -16,6 +16,10 @@ AI engine:
 - `depth` in [public/app.json](public/app.json) sets how deep Stockfish searches. Each search also stops after 3 seconds.
 - Stockfish is GPL-3.0. It's served as its own files, and the page links to its source and license.
 - The AI used to run on AWS Lambda in [andrewmacheret/chess-server-lambda](https://github.com/andrewmacheret/chess-server-lambda), which is now archived.
+
+Pieces:
+
+- The pieces in [src/pieces](src/pieces) are the "cburnett" SVG set by Colin M.L. Burnett (GPLv2+), copied from [lichess](https://github.com/lichess-org/lila/tree/master/public/piece/cburnett).
 
 Run:
 
