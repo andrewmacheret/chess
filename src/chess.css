@@ -1,5 +1,5 @@
 :root {
-  color-scheme: light dark;
+  color-scheme: only light;
   --page-bg: #f6f1ea;
   --text: #333;
   --text-muted: #6b625a;
@@ -17,29 +17,6 @@
   --accent-text: #fff;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   --shadow-lg: 0 10px 30px rgba(60, 40, 20, 0.15), 0 2px 6px rgba(60, 40, 20, 0.08);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --page-bg: #1c1a18;
-    --text: #e8e2db;
-    --text-muted: #a69c92;
-    --panel-bg: #262320;
-    --panel-border: #4a443e;
-    --soft-border: #3a352f;
-    /* black pieces need a light background to stay visible */
-    --captured-bg: #ffcd9e;
-    --link: #8fa8ff;
-    --link-hover: #b8c8ff;
-    --button-bg: #2e2a26;
-    --button-bg-hover: #3a342e;
-    --button-border: #5a524a;
-    --button-text: #e8e2db;
-    --accent: #cf8846;
-    --accent-text: #1c1a18;
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.3);
-  }
 }
 
 html {
@@ -477,7 +454,6 @@ button.player-choice:hover {
   gap: 8px;
 }
 
-/* the pawns sit on board-colored tiles so both colors show in light and dark mode */
 .player-side .piece {
   position: relative;
   display: block;
