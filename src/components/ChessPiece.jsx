@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import { useDrag } from "react-dnd";
-
 export default function ChessPiece({
-  canMove, // function
+  draggable, // bool
+  dragOffset, // {x, y} in pixels while this piece is being dragged
 
   pieceLetter, // string
-  originSquare, // string
   move, // ChessMove
   capture, // bool
   animate, // bool
@@ -20,28 +18,17 @@ export default function ChessPiece({
     setAnimated(shouldAnimate);
   }, [animated, shouldAnimate]);
 
-  const [{ isDragging, canDrag }, drag] = useDrag(() => {
-    return {
-      type: "piece",
-      item: { originSquare, pieceLetter },
-      canDrag: () => (canMove ? canMove(originSquare) : false),
-      collect: (monitor) => ({
-        isDragging: monitor.isDragging(),
-        canDrag: monitor.canDrag(),
-      }),
-    };
-  }, [canMove, originSquare, pieceLetter]);
-
   const classNames = ["piece", `piece-${pieceLetter}`];
 
-  if (canDrag) {
+  if (draggable) {
     classNames.push("piece-draggable");
-  }
-  if (isDragging) {
-    classNames.push("piece-dragging");
   }
 
   var styles = {};
+  if (dragOffset) {
+    classNames.push("piece-dragging");
+    styles.transform = `translate(${dragOffset.x}px, ${dragOffset.y}px)`;
+  }
   if (move) {
     classNames.push("last-move");
 
@@ -61,5 +48,5 @@ export default function ChessPiece({
     classNames.push(!animated ? "animation-started" : "animation-ended");
   }
 
-  return <div ref={drag} className={classNames.join(" ")} style={styles} />;
+  return <div className={classNames.join(" ")} style={styles} />;
 }

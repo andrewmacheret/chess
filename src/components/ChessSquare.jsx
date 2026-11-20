@@ -1,8 +1,8 @@
-import { useDrop } from "react-dnd";
-
 export default function ChessSquare({
-  move, // function
-  canMove, // function
+  droppable, // bool, the picked up or selected piece can move here
+  over, // bool, a piece is being dragged over this square
+  selected, // bool
+  occupied, // bool
 
   rowNumber, // number
   columnNumber, // number
@@ -11,27 +11,18 @@ export default function ChessSquare({
 
   children, // children
 }) {
-  const [{ canDrop, isOver }, drop] = useDrop(
-    () => ({
-      accept: "piece",
-      drop: (item) => {
-        window.setTimeout(() => move(item.originSquare, name), 1);
-      },
-      canDrop: (item) => canMove(item.originSquare, name),
-      collect: (monitor) => ({
-        canDrop: monitor.canDrop(),
-        isOver: monitor.isOver(),
-      }),
-    }),
-    [canMove, move]
-  );
-
   const color = (rowNumber + columnNumber) % 2 ? "black" : "white";
 
   const classNames = ["square", "square-" + color, `square-${name}`];
-  if (canDrop) {
+  if (selected) {
+    classNames.push("square-selected");
+  }
+  if (droppable) {
     classNames.push("square-droppable");
-    if (isOver) {
+    if (occupied) {
+      classNames.push("square-occupied");
+    }
+    if (over) {
       classNames.push("square-over");
     }
   }
@@ -42,13 +33,13 @@ export default function ChessSquare({
   return (
     <div
       className={classNames.join(" ")}
+      data-square={name}
       style={{
         width: `${widthPercent}%`,
         height: `${heightPercent}%`,
         left: `${widthPercent * columnNumber}%`,
         top: `${heightPercent * rowNumber}%`,
       }}
-      ref={drop}
     >
       {children}
     </div>

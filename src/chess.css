@@ -143,6 +143,8 @@ a:active {
   position: relative;
   width: 400px;
   height: 400px;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .square {
@@ -158,10 +160,36 @@ a:active {
   background-color: #cf8846;
 }
 
-/* .piece.piece-draggable {
-  border: 1px solid green;
+/* stop touch drags from scrolling the page */
+.piece.piece-draggable {
+  touch-action: none;
+}
+
+.square-selected {
+  box-shadow: inset 0 0 0 100px rgba(20, 85, 30, 0.35);
+}
+
+/* a dot on empty squares the piece can move to, and a ring around pieces it can take */
+.square-droppable::after {
+  content: "";
+  position: absolute;
+  left: 37.5%;
+  top: 37.5%;
+  width: 25%;
+  height: 25%;
+  border-radius: 50%;
+  background-color: rgba(20, 85, 30, 0.4);
+  pointer-events: none;
+}
+.square-droppable.square-occupied::after {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   box-sizing: border-box;
-} */
+  border: 4px solid rgba(20, 85, 30, 0.4);
+  background-color: transparent;
+}
 
 .square-over.square-droppable {
   border: 1px solid blue;
@@ -262,8 +290,11 @@ a:active {
   background-image: url('./pieces/bP.svg');
 }
 
-.piece-dragging {
-  display: none;
+/* the piece follows the pointer with a transform while it's dragged */
+.piece.piece-dragging {
+  z-index: 10;
+  pointer-events: none;
+  transition: none;
 }
 
 .captured {
