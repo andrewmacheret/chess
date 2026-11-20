@@ -1,4 +1,5 @@
 {
+    "engine": "local",
     "movesUrl": "https://chess.andrewmacheret.com/moves",
     "depth": 16
 }

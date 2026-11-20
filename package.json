@@ -21,7 +21,8 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dnd-touch-backend": "^16.0.1",
-    "react-dom": "^19.3.1"
+    "react-dom": "^19.3.1",
+    "stockfish": "^19.0.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^8.0.0",
