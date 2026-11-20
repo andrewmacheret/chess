@@ -397,6 +397,10 @@ button:disabled {
   height: 24px;
 }
 
+.game-buttons .thinking-hidden {
+  visibility: hidden;
+}
+
 .game-buttons .new-game {
   margin-left: auto;
   background-color: var(--accent);
