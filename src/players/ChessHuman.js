@@ -4,7 +4,7 @@ export default class ChessHuman {
   }
 
   async requestMove(fen) {
-    // do nothing... wait for a drag and drop event
+    // do nothing... wait for the human to drag or click a piece
     return {};
   }
 

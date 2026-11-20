@@ -1,20 +1,15 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { TouchBackend } from "react-dnd-touch-backend";
-import { DndProvider } from "react-dnd";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { getGameStatus, performMove, ChessState } from "../logic";
 
 import ChessSquare from "./ChessSquare";
 import ChessPiece from "./ChessPiece";
 
-// use the right drag & drop backend (mobile vs web)
-const DragBackend =
-  "ontouchstart" in document.documentElement ? TouchBackend : HTML5Backend;
-
 // the shortest time a computer move takes, so the 500ms move animation can finish
 const minComputerMoveMillis = 1000;
+
+// a press that moves less than this many pixels is a click, not a drag
+const dragThresholdPixels = 5;
 
 const squaresMatch = (a, b) =>
   a.rowNumber === b.rowNumber && a.columnNumber === b.columnNumber;
@@ -27,6 +22,13 @@ export default function ChessBoard({
   const [futureChessStates, setFutureChessStates] = useState([]);
   const [paused, setPaused] = useState(false);
   const [thinking, setThinking] = useState(false);
+  // square of the piece picked by clicking it
+  const [selected, setSelected] = useState(null);
+  // { source, x, y, over } while a piece is being dragged
+  const [drag, setDrag] = useState(null);
+  // the pointer currently pressed on the board
+  const pressRef = useRef(null);
+  const squaresRef = useRef(null);
 
   const { width, height } = chessState.getBoardSize();
 
@@ -155,6 +157,7 @@ export default function ChessBoard({
     // store the last chess state
     setChessState(lastChessState);
     setFutureChessStates(newFutureChessStates);
+    setSelected(null);
   }, [chessState, futureChessStates]);
 
   const redo = useCallback(() => {
@@ -167,10 +170,131 @@ export default function ChessBoard({
     // store the next chess state
     setChessState(nextChessState);
     setFutureChessStates(newFutureChessStates);
+    setSelected(null);
   }, [futureChessStates]);
 
+  // find the square under a point on the screen, or null if it's off the board
+  const getSquareAt = useCallback(
+    (clientX, clientY) => {
+      const element = squaresRef.current;
+      const rect = element.getBoundingClientRect();
+      const x = clientX - rect.left - element.clientLeft;
+      const y = clientY - rect.top - element.clientTop;
+      const columnNumber = Math.floor((x / element.clientWidth) * width);
+      const rowNumber = Math.floor((y / element.clientHeight) * height);
+      if (
+        !(columnNumber >= 0 && columnNumber < width) ||
+        !(rowNumber >= 0 && rowNumber < height)
+      ) {
+        return null;
+      }
+      return getSquareRef(rowNumber, columnNumber);
+    },
+    [width, height, getSquareRef]
+  );
+
+  // ignore a selection left over from a turn that's no longer playable
+  const selectedSquare = selected && canMove(selected) ? selected : null;
+
+  const clickSquare = useCallback(
+    (square) => {
+      if (selectedSquare && canMove(selectedSquare, square)) {
+        setSelected(null);
+        doMove(selectedSquare, square);
+      } else if (square !== selectedSquare && canMove(square)) {
+        setSelected(square);
+      } else {
+        setSelected(null);
+      }
+    },
+    [selectedSquare, canMove, doMove]
+  );
+
+  // mouse, touch and pen all come through these pointer events
+  const onPointerDown = useCallback(
+    (event) => {
+      // one press at a time, a second finger is ignored
+      const press = pressRef.current;
+      if ((press && press.pointerId !== event.pointerId) || event.button !== 0) {
+        return;
+      }
+      const squareElement = event.target.closest("[data-square]");
+      if (!squareElement) {
+        return;
+      }
+      const square = squareElement.dataset.square;
+      pressRef.current = {
+        pointerId: event.pointerId,
+        square,
+        canDrag: canMove(square),
+        dragging: false,
+        startX: event.clientX,
+        startY: event.clientY,
+      };
+      // keep getting move and up events even if the pointer leaves the board
+      event.currentTarget.setPointerCapture(event.pointerId);
+    },
+    [canMove]
+  );
+
+  const onPointerMove = useCallback(
+    (event) => {
+      const press = pressRef.current;
+      if (!press || press.pointerId !== event.pointerId) {
+        return;
+      }
+      const x = event.clientX - press.startX;
+      const y = event.clientY - press.startY;
+      if (!press.dragging) {
+        if (!press.canDrag || Math.hypot(x, y) < dragThresholdPixels) {
+          return;
+        }
+        press.dragging = true;
+      }
+      setDrag({
+        source: press.square,
+        x,
+        y,
+        over: getSquareAt(event.clientX, event.clientY),
+      });
+    },
+    [getSquareAt]
+  );
+
+  const onPointerUp = useCallback(
+    (event) => {
+      const press = pressRef.current;
+      if (!press || press.pointerId !== event.pointerId) {
+        return;
+      }
+      pressRef.current = null;
+      const x = event.clientX - press.startX;
+      const y = event.clientY - press.startY;
+      if (press.dragging) {
+        setDrag(null);
+        setSelected(null);
+        const target = getSquareAt(event.clientX, event.clientY);
+        if (target && canMove(press.square, target)) {
+          doMove(press.square, target);
+        }
+      } else if (Math.hypot(x, y) < dragThresholdPixels) {
+        clickSquare(press.square);
+      }
+    },
+    [getSquareAt, canMove, doMove, clickSquare]
+  );
+
+  const cancelPress = useCallback((event) => {
+    const press = pressRef.current;
+    if (!press || press.pointerId !== event.pointerId) {
+      return;
+    }
+    pressRef.current = null;
+    setDrag(null);
+  }, []);
+
   // ask the computer for a move whenever the current player / state changes
-  // (humans move by drag and drop instead)
+  // (humans move by dragging or clicking instead)
   useEffect(() => {
     if (gameStatus.gameOver || paused || currentPlayer.isHuman()) {
       return;
@@ -212,10 +336,13 @@ export default function ChessBoard({
     setPaused(false);
   }, []);
 
-  // only animate moves the computer made, a human already dragged the piece there
+  // only animate moves the computer made, a human already moved the piece there
   const lastPlayer = players[chessState.getPlayer() === "w" ? "b" : "w"];
   const animateLastMove = !lastPlayer.isHuman();
   const hasComputer = Object.values(players).some((player) => !player.isHuman());
+
+  // the piece whose legal moves are shown
+  const activeSource = drag ? drag.source : selectedSquare;
 
   const squares = [];
   for (let rowNumber = 0; rowNumber < height; rowNumber++) {
@@ -251,9 +378,9 @@ export default function ChessBoard({
             animate={animateLastMove}
             move={move}
             key={pieceLetter}
-            originSquare={ref}
             pieceLetter={pieceLetter}
-            canMove={canMove}
+            draggable={canMove(ref)}
+            dragOffset={drag && drag.source === ref ? drag : null}
           />
         );
 
@@ -263,7 +390,6 @@ export default function ChessBoard({
               animate={animateLastMove}
               capture={true}
               key={"x" + pieceLetter}
-              originSquare={ref}
               pieceLetter={move.capture}
             />
           );
@@ -279,7 +405,6 @@ export default function ChessBoard({
             animate={animateLastMove}
             move={lastMove}
             key={"x" + pieceLetter}
-            originSquare={ref}
             pieceLetter={lastMove.capture}
           />
         );
@@ -287,14 +412,15 @@ export default function ChessBoard({
 
       squares.push(
         <ChessSquare
-          animate={animateLastMove}
           name={ref}
           key={ref}
           rowNumber={rowNumber}
           columnNumber={columnNumber}
           boardSize={{ width, height }}
-          canMove={canMove}
-          move={doMove}
+          droppable={Boolean(activeSource) && canMove(activeSource, ref)}
+          over={Boolean(drag) && drag.over === ref}
+          selected={!drag && selectedSquare === ref}
+          occupied={Boolean(pieceLetter)}
         >
           {pieces}
         </ChessSquare>
@@ -321,57 +447,65 @@ export default function ChessBoard({
   ));
 
   return (
-    <DndProvider backend={DragBackend}>
-      <div className="board-wrapper">
-        <div className="board">
-          <div className="squares">{squares}</div>
-        </div>
-        <div className="captured">{captured}</div>
-        <div className="moves">{moves}</div>
-        <div className="game-info">
-          <div id="game-state">{gameStatus.message}</div>
-          <div id="fen">
-            <a href="https://wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation">
-              FEN:
-            </a>{" "}
-            {fen}
-          </div>
-          <div className="button-group game-buttons">
-            <button
-              className="undo"
-              onClick={undo}
-              disabled={!chessState.getLastState()}
-            >
-              Undo
-            </button>
-            <button
-              className="redo"
-              onClick={redo}
-              disabled={futureChessStates.length === 0}
-            >
-              Redo
-            </button>
-            <button className="new-game" onClick={newGame}>
-              New Game
-            </button>
-            {hasComputer && (
-              <div>
-                {paused ? (
-                  <button className="resume" onClick={resume}>
-                    Resume
-                  </button>
-                ) : (
-                  <button className="pause" onClick={pause}>
-                    Pause
-                  </button>
-                )}
-                {/* always rendered so the buttons don't shift when it shows */}
-                <div className={`thinking${thinking ? "" : " thinking-hidden"}`} />
-              </div>
-            )}
-          </div>
+    <div className="board-wrapper">
+      <div className="board">
+        <div
+          className="squares"
+          ref={squaresRef}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={cancelPress}
+          onLostPointerCapture={cancelPress}
+        >
+          {squares}
         </div>
       </div>
-    </DndProvider>
+      <div className="captured">{captured}</div>
+      <div className="moves">{moves}</div>
+      <div className="game-info">
+        <div id="game-state">{gameStatus.message}</div>
+        <div id="fen">
+          <a href="https://wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation">
+            FEN:
+          </a>{" "}
+          {fen}
+        </div>
+        <div className="button-group game-buttons">
+          <button
+            className="undo"
+            onClick={undo}
+            disabled={!chessState.getLastState()}
+          >
+            Undo
+          </button>
+          <button
+            className="redo"
+            onClick={redo}
+            disabled={futureChessStates.length === 0}
+          >
+            Redo
+          </button>
+          <button className="new-game" onClick={newGame}>
+            New Game
+          </button>
+          {hasComputer && (
+            <div>
+              {paused ? (
+                <button className="resume" onClick={resume}>
+                  Resume
+                </button>
+              ) : (
+                <button className="pause" onClick={pause}>
+                  Pause
+                </button>
+              )}
+              {/* always rendered so the buttons don't shift when it shows */}
+              <div className={`thinking${thinking ? "" : " thinking-hidden"}`} />
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
