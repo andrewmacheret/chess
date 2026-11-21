@@ -2,7 +2,7 @@
 
 :root {
   color-scheme: only light;
-  /* the board colors come from projects.css. light-square.svg and pulsing.svg copy them */
+  /* the board colors come from projects.css. The light-square and pulsing SVGs copy them */
   /* black pieces need a light background to stay visible */
   --captured-bg: light-dark(var(--surface), var(--square-light));
 }
@@ -18,7 +18,7 @@
 }
 
 .dark .captured {
-  background-image: url('./light-square.svg');
+  background-image: url('./light-square-dark.svg');
   background-size: 100% 100%;
 }
 
@@ -59,6 +59,9 @@
   background-color: var(--square-light);
   background-image: url('./light-square.svg');
   background-size: 100% 100%;
+}
+.dark .square-white {
+  background-image: url('./light-square-dark.svg');
 }
 .square-black {
   background-color: var(--square-dark);
@@ -289,6 +292,10 @@
   height: 24px;
 }
 
+.dark .game-buttons .thinking {
+  background-image: url('./pulsing-dark.svg');
+}
+
 .game-buttons .thinking-hidden {
   visibility: hidden;
 }
@@ -332,6 +339,10 @@
 
 .player-side .piece-P {
   background-image: url('./pieces/wP.svg'), url('./light-square.svg');
+}
+
+.dark .player-side .piece-P {
+  background-image: url('./pieces/wP.svg'), url('./light-square-dark.svg');
 }
 
 .player-side .piece-p {
