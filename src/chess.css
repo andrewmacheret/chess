@@ -105,20 +105,19 @@ a:active {
   justify-content: center;
   gap: 0.6rem;
   margin-top: 28px;
-  color: var(--text-muted);
+  color: color-mix(in srgb, var(--text-muted) 35%, transparent);
   font-size: 0.7rem;
-  opacity: 0.35;
-  transition: opacity 200ms;
-}
-
-.app-footer:hover,
-.app-footer:focus-within {
-  opacity: 0.8;
 }
 
 .app-footer a:link,
 .app-footer a:visited {
   color: inherit;
+  transition: color 200ms;
+}
+
+.app-footer a:hover,
+.app-footer a:focus-visible {
+  color: var(--text);
 }
 
 .app-subtitle {
