@@ -1,48 +1,21 @@
+/* Colors, the header, cards, buttons and the footer come from https://andrewmacheret.com/projects.css */
+
 :root {
   color-scheme: only light;
-  --page-bg: #f6f1ea;
-  --text: #333;
-  --text-muted: #6b625a;
-  --panel-bg: #fff;
-  --panel-border: #222;
-  --soft-border: #e2d8cc;
-  --captured-bg: #fff;
-  --link: #213483;
-  --link-hover: #4763d1;
-  --button-bg: #fff;
-  --button-bg-hover: #f3e6d8;
-  --button-border: #b9a998;
-  --button-text: #333;
-  --accent: #cf8846;
-  --accent-text: #fff;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 10px 30px rgba(60, 40, 20, 0.15), 0 2px 6px rgba(60, 40, 20, 0.08);
+  --board-border: light-dark(#1e293b, #475569);
+  --board-bg: light-dark(#ffffff, #1e293b);
+  /* black pieces need a light background to stay visible */
+  --captured-bg: light-dark(#ffffff, #ffcd9e);
 }
 
 /*
   index.html adds the dark class for dark mode, and also when Chrome's
   "Auto Dark Mode for Web Contents" flag darkens the page on its own.
+  The light-dark() colors follow whichever scheme is set here.
   The peach squares are drawn as an SVG image so Chrome's flag can't darken them.
 */
 :root.dark {
   color-scheme: only dark;
-  --page-bg: #1c1a18;
-  --text: #e8e2db;
-  --text-muted: #a69c92;
-  --panel-bg: #262320;
-  --panel-border: #4a443e;
-  --soft-border: #3a352f;
-  --link: #8fa8ff;
-  --link-hover: #b8c8ff;
-  --button-bg: #2e2a26;
-  --button-bg-hover: #3a342e;
-  --button-border: #5a524a;
-  --button-text: #e8e2db;
-  /* black pieces need a light background to stay visible */
-  --captured-bg: #ffcd9e;
-  --accent-text: #1c1a18;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .dark .captured {
@@ -50,101 +23,28 @@
   background-size: 100% 100%;
 }
 
-html {
-  font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  color: var(--text);
-  background-color: var(--page-bg);
-  text-rendering: optimizelegibility;
-}
-
-input, select, button, textarea {
-  font-family: inherit;
-  font-size: 16px;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-img {
-  vertical-align: middle;
-}
-
-a:link,
-a:visited {
-  text-decoration: none;
-  color: var(--link);
-}
-
-a:hover {
-  text-decoration: none;
-  color: var(--link-hover);
-}
-
-a:active {
-  text-decoration: none;
-}
-
-.app {
-  padding: 32px 8px 32px;
-}
-
-.app-title {
-  margin: 0 0 16px;
-  font-size: 36px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-}
-
-/* same footer as https://andrewmacheret.com/projects.css, which this page doesn't load */
-.app-footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.6rem;
-  margin-top: 28px;
-  color: color-mix(in srgb, var(--text-muted) 35%, transparent);
-  font-size: 0.7rem;
-}
-
-.app-footer a:link,
-.app-footer a:visited {
-  color: inherit;
-  transition: color 200ms;
-}
-
-.app-footer a:hover,
-.app-footer a:focus-visible {
-  color: var(--text);
-}
-
-.app-subtitle {
-  margin: 0 0 16px;
-  color: var(--text-muted);
-  font-size: 18px;
-}
-
-.code {
-  font-family: monospace;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-#content {
+.picker {
   text-align: center;
 }
 
+.picker .section-head {
+  margin-bottom: 1rem;
+}
+
+.board-wrapper {
+  width: fit-content;
+  margin: 0 auto;
+}
+
 .board {
-  border: solid var(--panel-border) 1px;
+  border: solid var(--board-border) 1px;
   padding: 3px;
   display: inline-block;
-  background-color: var(--panel-bg);
+  background-color: var(--board-bg);
 }
 
 .squares {
-  border: solid var(--panel-border) 1px;
+  border: solid var(--board-border) 1px;
   position: relative;
   width: 400px;
   height: 400px;
@@ -307,7 +207,7 @@ a:active {
   width: 50px;
   vertical-align: top;
   border-width: 1px 0;
-  border-color: var(--panel-border);
+  border-color: var(--board-border);
   border-style: solid;
   background-color: var(--captured-bg);
 }
@@ -319,7 +219,7 @@ a:active {
   height: 200px;
 }
 .captured-b {
-  border-top: solid var(--panel-border) 1px;
+  border-top: solid var(--board-border) 1px;
   padding-top: 1px;
 }
 .captured .piece {
@@ -335,12 +235,12 @@ a:active {
   display: inline-block;
   height: 408px;
   vertical-align: top;
-  border: solid var(--panel-border) 1px;
-  background-color: var(--panel-bg);
+  border: solid var(--board-border) 1px;
+  background-color: var(--board-bg);
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
-  scrollbar-color: var(--button-border) transparent;
+  scrollbar-color: var(--control-border) transparent;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-variant-numeric: tabular-nums;
 }
@@ -355,50 +255,14 @@ a:active {
 }
 .moves-w {
   border-width: 0 1px 0 0;
-  border-color: var(--panel-border);
+  border-color: var(--board-border);
   border-style: solid;
   margin-right: -1px;
 }
 .moves-b {
   border-width: 0 0 0 1px;
-  border-color: var(--panel-border);
+  border-color: var(--board-border);
   border-style: solid;
-}
-
-button {
-  padding: 7px 16px;
-  border: 1px solid var(--soft-border);
-  border-radius: 8px;
-  font-weight: 500;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  transition: background-color 120ms, border-color 120ms, transform 120ms;
-}
-
-button:hover:not(:disabled) {
-  background-color: var(--button-bg-hover);
-  border-color: var(--accent);
-}
-
-button:active:not(:disabled) {
-  transform: translateY(1px);
-}
-
-button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-button:disabled {
-  opacity: 0.45;
-  cursor: default;
-  box-shadow: none;
-}
-
-.board-wrapper {
-  display: inline-block;
 }
 
 .game-buttons {
@@ -406,12 +270,11 @@ button:disabled {
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
-.game-buttons button {
+.game-buttons .control {
   min-width: 84px;
-  font-size: 14px;
 }
 
 .game-buttons div {
@@ -433,14 +296,6 @@ button:disabled {
 
 .game-buttons .new-game {
   margin-left: auto;
-  background-color: var(--accent);
-  border-color: var(--accent);
-  color: var(--accent-text);
-}
-
-.game-buttons .new-game:hover {
-  background-color: var(--accent);
-  filter: brightness(1.08);
 }
 
 .player-choices {
@@ -456,21 +311,10 @@ button:disabled {
   }
 }
 
-button.player-choice {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.control.player-choice {
   gap: 18px;
   padding: 18px 16px 14px;
-  border-radius: 14px;
-  background-color: var(--panel-bg);
-  box-shadow: var(--shadow-lg);
-}
-
-button.player-choice:hover {
-  background-color: var(--panel-bg);
-  transform: translateY(-3px);
-  box-shadow: 0 14px 36px rgba(60, 40, 20, 0.22);
+  border-radius: 18px;
 }
 
 .player-side {
@@ -497,30 +341,25 @@ button.player-choice:hover {
 
 .player-label {
   font-size: 15px;
-  font-weight: bold;
 }
 
 .player-vs {
-  color: var(--text-muted);
+  color: var(--muted);
   font-size: 14px;
+  font-weight: 400;
   font-style: italic;
   margin-bottom: 22px;
 }
 
 .game-info {
-  box-sizing: border-box;
-  width: 100%;
-  margin-top: 8px;
-  padding: 12px 16px;
-  border: solid var(--panel-border) 1px;
-  border-radius: 6px;
-  background-color: var(--panel-bg);
+  margin-top: 14px;
   text-align: left;
 }
 
 #game-state {
+  color: var(--bright);
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 4px;
 }
 
@@ -530,7 +369,7 @@ button.player-choice:hover {
   text-overflow: ellipsis;
   display: inline-block;
   width: 100%;
-  color: var(--text-muted);
+  color: var(--muted);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 12px;
 }
