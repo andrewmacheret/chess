@@ -98,15 +98,21 @@ a:active {
   letter-spacing: -0.5px;
 }
 
+/* same footer as https://andrewmacheret.com/projects.css, which this page doesn't load */
 .app-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
   margin-top: 28px;
   color: var(--text-muted);
-  font-size: 11px;
+  font-size: 0.7rem;
   opacity: 0.35;
   transition: opacity 200ms;
 }
 
-.app-footer:hover {
+.app-footer:hover,
+.app-footer:focus-within {
   opacity: 0.8;
 }
 
