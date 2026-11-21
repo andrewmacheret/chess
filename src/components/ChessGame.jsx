@@ -56,6 +56,17 @@ export default function ChessGame() {
 
   return (
     <main className="app">
+      <nav className="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li>
+            <a href="https://andrewmacheret.com/">
+              <img src="https://andrewmacheret.com/favicon.svg" alt="" width="14" height="14" />
+              andrewmacheret.com
+            </a>
+          </li>
+          <li aria-current="page">Chess</li>
+        </ol>
+      </nav>
       <header className="header">
         <div>
           <h1>Chess</h1>
