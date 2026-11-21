@@ -2,17 +2,19 @@
 
 :root {
   color-scheme: only light;
-  --board-border: light-dark(#1e293b, #475569);
-  --board-bg: light-dark(#ffffff, #1e293b);
+  /* light-square.svg and pulsing.svg use these same colors */
+  --square-light: #e4ede1;
+  --square-dark: #5a9c63;
+  --board-border: light-dark(#1f2622, #3a423d);
   /* black pieces need a light background to stay visible */
-  --captured-bg: light-dark(#ffffff, #ffcd9e);
+  --captured-bg: light-dark(var(--surface), var(--square-light));
 }
 
 /*
   index.html adds the dark class for dark mode, and also when Chrome's
   "Auto Dark Mode for Web Contents" flag darkens the page on its own.
   The light-dark() colors follow whichever scheme is set here.
-  The peach squares are drawn as an SVG image so Chrome's flag can't darken them.
+  The light squares are drawn as an SVG image so Chrome's flag can't darken them.
 */
 :root.dark {
   color-scheme: only dark;
@@ -40,7 +42,7 @@
   border: solid var(--board-border) 1px;
   padding: 3px;
   display: inline-block;
-  background-color: var(--board-bg);
+  background-color: var(--surface);
 }
 
 .squares {
@@ -57,12 +59,12 @@
 }
 
 .square-white {
-  background-color: #ffcd9e;
+  background-color: var(--square-light);
   background-image: url('./light-square.svg');
   background-size: 100% 100%;
 }
 .square-black {
-  background-color: #cf8846;
+  background-color: var(--square-dark);
 }
 
 /* stop touch drags from scrolling the page */
@@ -71,7 +73,7 @@
 }
 
 .square-selected {
-  box-shadow: inset 0 0 0 100px rgba(20, 85, 30, 0.35);
+  box-shadow: inset 0 0 0 100px rgb(255 255 51 / 0.45);
 }
 
 /* a dot on empty squares the piece can move to, and a ring around pieces it can take */
@@ -83,7 +85,7 @@
   width: 25%;
   height: 25%;
   border-radius: 50%;
-  background-color: rgba(20, 85, 30, 0.4);
+  background-color: rgb(11 13 12 / 0.25);
   pointer-events: none;
 }
 .square-droppable.square-occupied::after {
@@ -92,7 +94,7 @@
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  border: 4px solid rgba(20, 85, 30, 0.4);
+  border: 4px solid rgb(11 13 12 / 0.25);
   background-color: transparent;
 }
 
@@ -236,7 +238,7 @@
   height: 408px;
   vertical-align: top;
   border: solid var(--board-border) 1px;
-  background-color: var(--board-bg);
+  background-color: var(--surface);
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
@@ -328,7 +330,7 @@
   position: relative;
   display: block;
   border-radius: 8px;
-  background-color: #ffcd9e;
+  background-color: var(--square-light);
 }
 
 .player-side .piece-P {
@@ -336,7 +338,7 @@
 }
 
 .player-side .piece-p {
-  background-color: #cf8846;
+  background-color: var(--square-dark);
 }
 
 .player-label {
