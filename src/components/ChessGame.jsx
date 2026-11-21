@@ -56,20 +56,15 @@ export default function ChessGame() {
 
   return (
     <main className="app">
-      <nav className="breadcrumb" aria-label="Breadcrumb">
-        <ol>
-          <li>
-            <a href="https://andrewmacheret.com/">
-              <img src="https://andrewmacheret.com/favicon.svg" alt="" width="14" height="14" />
-              andrewmacheret.com
-            </a>
-          </li>
-          <li aria-current="page">Chess</li>
-        </ol>
-      </nav>
       <header className="header">
         <div>
-          <h1>Chess</h1>
+          <div className="title-row">
+            <a className="home" href="https://andrewmacheret.com/">
+              <img src="https://andrewmacheret.com/favicon.svg" alt="andrewmacheret.com" width="20" height="20" />
+            </a>
+            <span className="slash" aria-hidden="true">/</span>
+            <h1>Chess</h1>
+          </div>
           <p>Play a friend, or Stockfish running right in your browser.</p>
         </div>
       </header>
