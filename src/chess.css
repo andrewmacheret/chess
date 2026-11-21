@@ -2,10 +2,7 @@
 
 :root {
   color-scheme: only light;
-  /* light-square.svg and pulsing.svg use these same colors */
-  --square-light: #e4ede1;
-  --square-dark: #5a9c63;
-  --board-border: light-dark(#1f2622, #3a423d);
+  /* the board colors come from projects.css. light-square.svg and pulsing.svg copy them */
   /* black pieces need a light background to stay visible */
   --captured-bg: light-dark(var(--surface), var(--square-light));
 }
@@ -73,7 +70,7 @@
 }
 
 .square-selected {
-  box-shadow: inset 0 0 0 100px rgb(255 255 51 / 0.45);
+  box-shadow: inset 0 0 0 100px var(--selected);
 }
 
 /* a dot on empty squares the piece can move to, and a ring around pieces it can take */
