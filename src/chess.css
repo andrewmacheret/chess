@@ -30,9 +30,24 @@
   margin-bottom: 1rem;
 }
 
+.stage {
+  container-type: inline-size;
+}
+
 .board-wrapper {
+  /* one square. Whole pixels keep the lines and highlights sharp */
+  --square: 50px;
+  --half-square: 25px;
   width: fit-content;
   margin: 0 auto;
+}
+
+/* smaller squares when the card is too narrow for a 400px board. 10px is the board's border and padding */
+@supports (width: round(down, 1px, 1px)) {
+  .board-wrapper {
+    --square: min(50px, round(down, (100cqi - 10px) / 8, 1px));
+    --half-square: round(down, var(--square) / 2, 1px);
+  }
 }
 
 .board {
@@ -45,8 +60,8 @@
 .squares {
   border: solid var(--board-border) 1px;
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: calc(var(--square) * 8);
+  height: calc(var(--square) * 8);
   user-select: none;
   -webkit-user-select: none;
 }
@@ -145,19 +160,13 @@
   background-repeat: no-repeat;
   cursor: pointer;
   z-index: 2;
-  width: 50px;
-  height: 50px;
+  width: 100%;
+  height: 100%;
   position: absolute;
 
   /* transparent border of 1 pixel */
   border: 1px solid rgba(0, 0, 0, 0);
   box-sizing: border-box;
-}
-.captured .piece {
-  cursor: default;
-  display: inline-block;
-  width: 25px;
-  height: 25px;
 }
 
 .piece-K {
@@ -206,7 +215,7 @@
 
 .captured {
   display: inline-block;
-  width: 50px;
+  width: var(--square);
   vertical-align: top;
   border-width: 1px 0;
   border-color: var(--board-border);
@@ -217,8 +226,8 @@
   display: block;
   padding: 2px 0;
   text-align: left;
-  width: 50px;
-  height: 200px;
+  width: var(--square);
+  height: calc(var(--square) * 4);
 }
 .captured-b {
   border-top: solid var(--board-border) 1px;
@@ -228,14 +237,14 @@
   position: relative;
   cursor: default;
   display: inline-block;
-  width: 25px;
-  height: 25px;
+  width: var(--half-square);
+  height: var(--half-square);
   margin: -2px 0;
 }
 
 .moves {
   display: inline-block;
-  height: 408px;
+  height: calc(var(--square) * 8 + 8px);
   vertical-align: top;
   border: solid var(--board-border) 1px;
   background-color: var(--surface);
@@ -250,7 +259,7 @@
   display: inline-block;
   width: 50px;
   vertical-align: top;
-  min-height: 403px;
+  min-height: calc(var(--square) * 8 + 3px);
   font-size: 14px;
   text-align: left;
   padding: 5px 0 0 10px;
@@ -265,6 +274,53 @@
   border-width: 0 0 0 1px;
   border-color: var(--board-border);
   border-style: solid;
+}
+
+/* phones: captured pieces in two rows under the board, then a short moves list */
+@container (max-width: 582px) {
+  .board-wrapper {
+    --moves-height: calc(var(--square) * 3);
+    width: calc(var(--square) * 8 + 10px);
+  }
+
+  .board {
+    display: block;
+  }
+
+  .captured {
+    display: block;
+    width: auto;
+    border-width: 0 1px 1px;
+  }
+
+  .captured-w, .captured-b {
+    display: flex;
+    width: auto;
+    height: var(--half-square);
+    padding: 2px 3px;
+    overflow: hidden;
+  }
+
+  .captured-b {
+    padding-top: 1px;
+  }
+
+  .captured .piece {
+    flex: none;
+    margin: 0;
+  }
+
+  .moves {
+    display: flex;
+    height: var(--moves-height);
+    margin-top: 8px;
+  }
+
+  .moves-w, .moves-b {
+    flex: 1;
+    width: auto;
+    min-height: calc(var(--moves-height) - 5px);
+  }
 }
 
 .game-buttons {
@@ -332,6 +388,8 @@
 
 .player-side .piece {
   position: relative;
+  width: 50px;
+  height: 50px;
   display: block;
   border-radius: 8px;
   background-color: var(--square-light);
