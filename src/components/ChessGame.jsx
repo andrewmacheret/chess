@@ -56,17 +56,24 @@ export default function ChessGame() {
 
   return (
     <main className="app">
-      <h1 className="app-title">Chess</h1>
+      <header className="header">
+        <div>
+          <h1>Chess</h1>
+          <p>Play a friend, or Stockfish running right in your browser.</p>
+        </div>
+      </header>
       {players ? (
-        <ChessBoard players={players} newGame={newGame} />
+        <section className="stage">
+          <ChessBoard players={players} newGame={newGame} />
+        </section>
       ) : (
-        <>
-          <p className="app-subtitle">Who's playing?</p>
+        <section className="stage picker" aria-labelledby="picker-heading">
+          <h2 id="picker-heading" className="section-head">Who's playing?</h2>
           <div className="player-choices">
             {playerChoices.map((choice) => (
               <button
                 key={choice.name}
-                className="player-choice"
+                className="control player-choice"
                 onClick={() => choosePlayers(choice)}
                 aria-label={choice.name}
               >
@@ -76,9 +83,9 @@ export default function ChessGame() {
               </button>
             ))}
           </div>
-        </>
+        </section>
       )}
-      <footer className="app-footer">
+      <footer className="footer">
         <a href="https://andrewmacheret.com/">More projects</a>
         <span aria-hidden="true">·</span>
         <span>

@@ -473,30 +473,30 @@ export default function ChessBoard({
         </div>
         <div className="button-group game-buttons">
           <button
-            className="undo"
+            className="control small undo"
             onClick={undo}
             disabled={!chessState.getLastState()}
           >
             Undo
           </button>
           <button
-            className="redo"
+            className="control small redo"
             onClick={redo}
             disabled={futureChessStates.length === 0}
           >
             Redo
           </button>
-          <button className="new-game" onClick={newGame}>
+          <button className="control small primary new-game" onClick={newGame}>
             New Game
           </button>
           {hasComputer && (
             <div>
               {paused ? (
-                <button className="resume" onClick={resume}>
+                <button className="control small resume" onClick={resume}>
                   Resume
                 </button>
               ) : (
-                <button className="pause" onClick={pause}>
+                <button className="control small pause" onClick={pause}>
                   Pause
                 </button>
               )}
