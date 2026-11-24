@@ -1,6 +1,6 @@
 # chess
 
-[![Test, build and deploy](https://github.com/andrewmacheret/chess/actions/workflows/deploy.yml/badge.svg)](https://github.com/andrewmacheret/chess/actions/workflows/deploy.yml)
+[![Test, build and deploy](https://github.com/andrewmacheret/chess/actions/workflows/deploy.yml/badge.svg)](https://github.com/andrewmacheret/chess/actions/workflows/deploy.yml) [![License](https://img.shields.io/badge/license-MIT-lightgray.svg)](https://github.com/andrewmacheret/chess/blob/master/LICENSE.md)
 
 A web-based chess program written in [React](https://react.dev/) that supports any combination of player vs AI. Human players can drag a piece with a mouse, finger or pen, or click a piece and then the square to move it to. Computer moves are animated. Follows your system's light or dark mode.
 
