@@ -1,6 +1,6 @@
 # chess
 
-[![Test, build and deploy](https://github.com/andrewmacheret/chess/actions/workflows/deploy.yml/badge.svg)](https://github.com/andrewmacheret/chess/actions/workflows/deploy.yml) [![License](https://img.shields.io/badge/license-MIT-lightgray.svg)](https://github.com/andrewmacheret/chess/blob/master/LICENSE.md)
+[![Test, build and deploy](https://github.com/andrewmacheret/chess/actions/workflows/deploy.yml/badge.svg)](https://github.com/andrewmacheret/chess/actions/workflows/deploy.yml) [![Canary](https://github.com/andrewmacheret/chess/actions/workflows/canary.yml/badge.svg)](https://github.com/andrewmacheret/chess/actions/workflows/canary.yml) [![License](https://img.shields.io/badge/license-MIT-lightgray.svg)](https://github.com/andrewmacheret/chess/blob/master/LICENSE.md)
 
 A web-based chess program written in [React](https://react.dev/) that supports any combination of player vs AI. Human players can drag a piece with a mouse, finger or pen, or click a piece and then the square to move it to. Computer moves are animated. Follows your system's light or dark mode.
 
@@ -39,3 +39,7 @@ Deploy:
 
 - Pushing to `master` runs [.github/workflows/deploy.yml](.github/workflows/deploy.yml), which tests, builds, uploads `dist/` to `s3://andrewmacheret.com/projects/chess/`, and clears the CloudFront cache.
 - It signs in to AWS with GitHub OIDC using the role in the repo variable `AWS_ROLE_ARN`. The CloudFront distribution ID is in the repo variable `CLOUDFRONT_DISTRIBUTION_ID`.
+
+## Health check
+
+[`/projects/chess/healthcheck/`](https://andrewmacheret.com/projects/chess/healthcheck/) checks the page and its scripts and styles, plus the Stockfish engine files the scripts load. The Canary workflow (`.github/workflows/canary.yml`) opens it once a day, started by [andrewmacheret/canary](https://github.com/andrewmacheret/canary).
