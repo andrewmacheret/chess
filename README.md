@@ -42,4 +42,4 @@ Deploy:
 
 ## Health check
 
-[`/projects/chess/healthcheck/`](https://andrewmacheret.com/projects/chess/healthcheck/) checks the page and its scripts and styles, plus the Stockfish engine files the scripts load. The Canary workflow (`.github/workflows/canary.yml`) opens it once a day, started by [andrewmacheret/canary](https://github.com/andrewmacheret/canary).
+Once a day, the Canary workflow (`.github/workflows/canary.yml`) checks the page and its scripts and styles, plus the Stockfish engine files the scripts load. It's started by [andrewmacheret/canary](https://github.com/andrewmacheret/canary).
