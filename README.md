@@ -4,7 +4,7 @@
 
 A web-based chess program written in [React](https://react.dev/) that supports any combination of player vs AI. Human players can drag a piece with a mouse, finger or pen, or click a piece and then the square to move it to. Computer moves are animated. Follows your system's light or dark mode.
 
-See it running at [https://andrewmacheret.com/projects/chess](https://andrewmacheret.com/projects/chess).
+See it running at [https://andrewmacheret.com/projects/chess/](https://andrewmacheret.com/projects/chess/).
 
 ![Game image](public/game.png?raw=true "Game image")
 
